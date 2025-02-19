@@ -1,0 +1,391 @@
+<HTML>
+<HEAD>
+<TITLE>Dan's Motorcycle Airborne Page</TITLE>
+<META Name="description" content="My 82nd Airborne Page.">
+<META Name="keywords" Content="airborne, jump, pictures...">
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.9">
+
+<link rel="stylesheet" href="screen.css" type="text/css" media="Screen" />
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Original: Alex Tu <boudha1@hotmail.com> -->
+<!-- Web Site:  http://www.geocities.com/MadisonAvenue/4368 -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+function formHandler(form){
+var URL = document.form.site.options[document.form.site.selectedIndex].value;
+window.location.href = URL;
+}
+// End -->
+</SCRIPT>
+
+<style type="text/css">
+
+img.expando{ /*sample CSS for expando images. Not required but recommended*/
+border: none;
+vertical-align: top; /*top aligns image, so mouse has less of a change of moving out of image while image is expanding*/
+}
+
+</style>
+
+<script type="text/javascript" src="expando.js">
+
+/* Expando Image Script ©2008 John Davenport Scheuer
+   as first seen in http://www.dynamicdrive.com/forums/
+   username: jscheuer1 - This Notice Must Remain for Legal Use
+   */
+
+</script>
+
+
+
+
+</HEAD>
+
+<BODY link="white" vlink="white" background="clowds11.jpg" onLoad="if(brOK) setHandlers()" onUnload="if(brOK) {if(tid) clearTimeout(tid);}">
+
+<div align=left style="margin-left: 5%;"> 
+<div align=left style="margin-right: 10%;">
+
+
+
+<style type="text/css">
+body{ background-attachment:fixed; }
+</style>
+
+
+
+
+<marquee direction=left scrollamount=2.5><a href="c-130.jpg" target="_blank"><img src="c130.gif" border=0 height=31 width=75></A></marquee><marquee direction=left scrollamount=2><a href="82nd_C-17.jpg" target="_blank"><img src="c130.gif" border=0 height=21 width=50></A></marquee><marquee direction=left scrollamount=1.5><a href="https://en.wikipedia.org/wiki/Lockheed_C-130_Hercules" target="_blank"><img src="c130.gif" border=0 height=10 width=25></A></marquee>
+
+
+
+
+
+
+<script type="text/javascript">
+
+/******************************************
+* Snow Effect Script- By Altan d.o.o. (http://www.altan.hr/snow/index.html)
+* Visit Dynamic Drive DHTML code library (http://www.dynamicdrive.com/) for full source code
+* Last updated Nov 9th, 05' by DD. This notice must stay intact for use
+******************************************/
+  
+  //Configure below to change URL path to the snow image
+  var snowsrc="parachute.gif" 
+  // Configure below to change number of snow to render
+  var no = 10;
+  // Configure whether snow should disappear after x seconds (0=never):
+  var hidesnowtime = 0;
+  // Configure how much snow should drop down before fading ("windowheight" or "pageheight")
+  var snowdistance = "windowheight";
+
+///////////Stop Config//////////////////////////////////
+
+  var ie4up = (document.all) ? 1 : 0;
+  var ns6up = (document.getElementById&&!document.all) ? 1 : 0;
+
+	function iecompattest(){
+	return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+	}
+
+  var dx, xp, yp;    // coordinate and position variables
+  var am, stx, sty;  // amplitude and step variables
+  var i, doc_width = 800, doc_height = 600; 
+  
+  if (ns6up) {
+    doc_width = self.innerWidth;
+    doc_height = self.innerHeight;
+  } else if (ie4up) {
+    doc_width = iecompattest().clientWidth;
+    doc_height = iecompattest().clientHeight;
+  }
+
+  dx = new Array();
+  xp = new Array();
+  yp = new Array();
+  am = new Array();
+  stx = new Array();
+  sty = new Array();
+  snowsrc=(snowsrc.indexOf("parachutea.jpg")!=-1)? "snow.gif" : snowsrc
+  for (i = 0; i < no; ++ i) {  
+    dx[i] = 0;                        // set coordinate variables
+    xp[i] = Math.random()*(doc_width-50);  // set position variables
+    yp[i] = Math.random()*doc_height;
+    am[i] = Math.random()*20;         // set amplitude variables
+    stx[i] = 0.02 + Math.random()/10; // set step variables
+    sty[i] = 0.7 + Math.random();     // set step variables
+		if (ie4up||ns6up) {
+      if (i == 0) {
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><a href="http://www.dansmc.com/Airborne_Page/\&quot;parachutea.jpg\&quot;"><img src='http://www.dansmc.com/Airborne_Page/&quot;+snowsrc+&quot;' border=\"0\"><\/a><\/div>");
+      } else {
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='http://www.dansmc.com/Airborne_Page/&quot;+snowsrc+&quot;' border=\"0\"><\/div>");
+      }
+    }
+  }
+
+  function snowIE_NS6() {  // IE and NS6 main animation function
+    doc_width = ns6up?window.innerWidth-10 : iecompattest().clientWidth-10;
+		doc_height=(window.innerHeight && snowdistance=="windowheight")? window.innerHeight : (ie4up && snowdistance=="windowheight")?  iecompattest().clientHeight : (ie4up && !window.opera && snowdistance=="pageheight")? iecompattest().scrollHeight : iecompattest().offsetHeight;
+    for (i = 0; i < no; ++ i) {  // iterate for every dot
+      yp[i] += sty[i];
+      if (yp[i] > doc_height-50) {
+        xp[i] = Math.random()*(doc_width-am[i]-30);
+        yp[i] = 0;
+        stx[i] = 0.02 + Math.random()/10;
+        sty[i] = 0.7 + Math.random();
+      }
+      dx[i] += stx[i];
+      document.getElementById("dot"+i).style.top=yp[i]+"px";
+      document.getElementById("dot"+i).style.left=xp[i] + am[i]*Math.sin(dx[i])+"px";  
+    }
+    snowtimer=setTimeout("snowIE_NS6()", 10);
+  }
+
+	function hidesnow(){
+		if (window.snowtimer) clearTimeout(snowtimer)
+		for (i=0; i<no; i++) document.getElementById("dot"+i).style.visibility="hidden"
+	}
+		
+
+if (ie4up||ns6up){
+    snowIE_NS6();
+		if (hidesnowtime>0)
+		setTimeout("hidesnow()", hidesnowtime*1000)
+		}
+
+</script>
+
+
+
+
+
+<SCRIPT >
+// Watching Eyes Script
+// By Virtual_Max  http://www.geocities.com/siliconvalley/lakes/8620
+// Modified by Dynamicdrive.com (IE specific bug fixed)
+// Permission granted to Dynamicdrive.com to include the script in it's archive
+// For 100's more DHTML scripts, visit Dynamicdrive.com
+//
+// Permission to use, copy, modify, and distribute this software and its documentation 
+// for NON-COMMERCIAL purposes and  without fee is hereby granted provided that this 
+// notice appears in all copies. 
+//
+// VIRTUAL MAX MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE 
+// SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
+// WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR 
+// NON-INFRINGEMENT. VIRTUAL MAX SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY 
+// LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR 
+// ITS DERIVATIVES.
+
+
+var brOK=false;
+var mie=false;
+var ex=0;
+var ey=0;
+var ae;
+var le;
+var re;
+var x0;
+var y0;
+var tid;
+var realx;
+var realy;
+var loaded=false;
+if(parseInt(navigator.appVersion.charAt(0))>=4)
+  {brOK=true;}
+if(navigator.appName.indexOf("Microsoft")!=-1)
+  {mie=true; }
+function myhandler(e)
+{ex=e.pageX; 
+ ey=e.pageY;
+ moveeye()
+ return routeEvent(e);
+}
+
+function moveeye()
+{dy=ey-y0-20;
+ dx1=ex-x0-20;
+ dx2=ex-x0-60;
+
+ r=Math.sqrt(dx1*dx1+dy*dy);
+ if(r<20) r=20
+ dx1=dx1*10/r+x0+10;
+ dy1=dy*10/r+y0+10;
+
+ r=Math.sqrt(dx2*dx2+dy*dy);
+ if(r<20) r=20
+ dx2=dx2*10/r+x0+50;
+
+ ae.left=x0;  
+ ae.top=y0;  
+ le.left=dx1;  
+ le.top=dy1;  
+ re.left=dx2;  
+ re.top=dy1;  
+}
+
+
+function setHandlers()
+{if(!mie)   {y0=document.eyeballs.top;
+             x0=document.eyeballs.left;
+             ae=document.eyeballs;
+             le=document.lefteye;   
+             re=document.righteye;   
+             window.captureEvents(Event.MOUSEMOVE);
+             window.onMouseMove=myhandler;
+            }
+ else       {y0=document.all.eyeballs.style.pixelTop;
+             x0=document.all.eyeballs.style.pixelLeft;
+             ae=document.all.eyeballs.style;
+             le=document.all.lefteye.style;
+             re=document.all.righteye.style;
+            }
+ realx=x0+0.1;
+ realy=y0+0.1;
+ 
+ moveall();
+ loaded=true;
+}
+
+function moveall()
+{rx=realx+40
+ ry=realy+40;
+ rx+=(ex-rx)*0.1;
+ ry+=(ey-ry)*0.1;
+ realx=rx-40;
+ realy=ry-40;
+ x0=Math.round(realx);
+ y0=Math.round(realy);
+ moveeye();
+ tid=setTimeout('moveall()',100);
+}
+
+function placeeyes(x,y)
+{if(brOK)
+ {ex=x+40;
+  ey=y+40;
+  s ='<DIV ID="dummy"    STYLE="position:absolute; top:'+y+'; left:'+x+'; width:10; height:10;">&nbsp;</DIV>';
+  s+='<DIV ID="eyeballs" STYLE="position:absolute; top:'+y+'; left:'+x+'; width:80; height:40;"  ><a href="parachutea.jpg"><IMG SRC="parachute.gif" alt="Click on Me !"height=53 width=30  border=0></a></DIV>';
+  s+='<DIV ID="lefteye"  STYLE="position:absolute; top:'+(y+10)+'; left:'+(x+10)+'; width:20; height:20;"  ></DIV>';
+  s+='<DIV ID="righteye" STYLE="position:absolute; top:'+(y+10)+'; left:'+(x+50)+'; width:20; height:20;"  ></DIV>';
+  document.writeln(s);
+ }
+}
+</script>
+<script FOR=document Event="onmousemove()">
+if((mie==true)&&(brOK)&&loaded)
+  {ex=document.body.scrollLeft+event.x;
+   ey=document.body.scrollTop+event.y;
+   moveeye();
+  }
+</script>
+
+<script>
+if (document.all||document.layers)
+ placeeyes(200,100);
+</script>
+
+<center><a href="http://www.archives.gov/historical-docs/document.html?doc=1&title.raw=Declaration%20of%20Independence" target="_blank"><img class="expando cat" border="0" src="us_flag_large.gif" width="200" height="150"></a><BR><BR>
+
+
+<font size=10><b>82nd AIRBORNE</b></font><BR><BR>
+
+<TABLE WIDTH=700 BORDER=0 CELLPADDING=3 COLS=4><TR>
+<TD VALIGN=TOP WIDTH=220><CENTER><font size=4 face=tahoma>
+<img src="AirborneWings2.gif" border=0 width="200" height="125"></CENTER></TD>
+<TD VALIGN=TOP WIDTH=220><CENTER><font size=4 face=tahoma>
+<IMG SRC="82nd_patch_1.gif" width=200 height=265</CENTER></TD>
+<TD VALIGN=TOP WIDTH=220><CENTER><font size=4 face=tahoma><img src="AirborneWings2.gif" border=0 width="200" height="125"></CENTER></TD>
+</TR></TABLE>
+</center>
+
+
+<BR><BR>
+
+
+<font size=4 face=tahoma><B>Hi there Airborne, you found me! I was in the 82nd from 1971 to 1974. Maybe someone out there will remember Sp/4 Dan Acree, A Company, 782 Maintanence Battalion. 
+If so E-Mail me, I'd like to hear from you.
+<p>For your enjoyment here are some pictures from my Airborne days. Pictures I took on a jump, and some others.</p></B></font>   
+<div align="center">
+
+<TABLE WIDTH=600 BORDER=10 CELLPADDING=8 BGCOLOR=blue><TR><TD><CENTER>
+<font size=4 face=tahoma color=white>
+<A href="airborne2.htm">Page 1</a>&nbsp;&nbsp;&nbsp;
+<a href="airborne3.htm">Page 2</a>&nbsp;&nbsp;&nbsp;
+<a href="airborne4.htm">Page 3</a>&nbsp;&nbsp;&nbsp;
+<a href="airborne5.htm">Page 4</a>&nbsp;&nbsp;&nbsp;
+<BR>
+<A href="airborne6.htm">"Blood on the Risers" Song</a>&nbsp;&nbsp;&nbsp;
+<a href="airborne7.htm">A Thank You!</a>&nbsp;&nbsp;&nbsp;<BR>
+<a href="../indexindex.htm">Dansmc Index</a>&nbsp;&nbsp;&nbsp;
+<a href="../index.htm">Dansmc Home</a>
+<BR> <script language=javascript>
+
+<!--
+// This Script was made with ASS Maker 3.1 (c)2000-2001 A.Madeira
+// http://www.assmaker.mybravenet.com
+var link = "E-Mail Dan";
+var tag1 = "mail";
+var tag2 = "to:";
+var email1 = "%20mail";
+var email2 = "dansmc";
+var email3 = ".com";
+var subject = "MC1";
+var cc = "";
+var bcc = "";
+var body = "";
+document.write("<a h" + "ref=" + tag1 + tag2 + email1 + "@" + email2 + email3 + "?cc=" + cc + "&bcc=" + bcc + "&subject=" + escape(subject) + "&body=" + escape(body) + ">" + link + "</a>")
+//-->
+
+</script>
+
+
+<BR></font></CENTER></TD></TR></TABLE>
+
+</div>
+
+<BR>
+
+<center>
+<form name="form">
+<select name="site" size=1>
+<option value="">go to....
+<option value="http://www.dansmc.com/index.htm">Home
+<option value="http://www.dansmc.com/indexindex.htm">Index
+
+<option value="http://www.dansmc.com/Bible1.htm">Ultimate Shop Manual
+<option value="http://www.dansmc.com/shopmanual2.htm">Online Shop Manuals
+<option value="http://www.dansmc.com/MC_repaircourse.htm">MC Repair Course
+
+
+<option value="http://www.dansmc.com/emailtome.htm">E-Mail To ME
+<option value="http://www.dansmc.com/airborne_page/airborne1.htm">Airborne
+<option value="http://www.dansmc.com/b24pilot/index.htm">B-24 pilot's Page
+<option value="http://www.dansmc.com/b24pilot/acreeindex.htm">Acree Family Page
+
+
+<option value="http://www.headhuntertaxidermy.com">Headhunter Taxidermy
+
+
+</select>
+<input type=button value="go!" onClick="javascript:formHandler(this)">
+</form>
+
+</center>
+<BR><BR>
+
+
+</div><BR><BR>
+
+
+</BODY>
+</HTML>
