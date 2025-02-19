@@ -1,0 +1,333 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<TITLE>Dan's Motorcycle  Disclaimer</TITLE>
+<META Name="description" content="disclaimer.">
+<META Name="keywords" Content="disclaimer...">
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.9">
+
+<link rel="stylesheet" href="screen.css" type="text/css" media="Screen" />
+
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Original: Alex Tu <boudha1@hotmail.com> -->
+<!-- Web Site:  http://www.geocities.com/MadisonAvenue/4368 -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+function formHandler(form){
+var URL = document.form.site.options[document.form.site.selectedIndex].value;
+window.location.href = URL;
+}
+// End -->
+</SCRIPT>
+
+<style type="text/css">
+.matrix { font-family:Lucida Console, Courier, Monotype; font-size:15pt; text-align:center; width:10px; padding:0px; margin:0px;}
+</style>
+
+<script type="text/javascript" language="JavaScript">
+
+<!--
+var rows=11; // must be an odd number
+var speed=50; // lower is faster
+var reveal=2; // between 0 and 2 only. The higher, the faster the word appears
+var effectalign="default" //enter "center" to center it.
+
+/***********************************************
+* The Matrix Text Effect- by Richard Womersley (http://www.mf2fm.co.uk/rv)
+* This notice must stay intact for use
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+var w3c=document.getElementById && !window.opera;;
+var ie45=document.all && !window.opera;
+var ma_tab, matemp, ma_bod, ma_row, x, y, columns, ma_txt, ma_cho;
+var m_coch=new Array();
+var m_copo=new Array();
+window.onload=function() {
+	if (!w3c && !ie45) return
+  var matrix=(w3c)?document.getElementById("matrix"):document.all["matrix"];
+  ma_txt=(w3c)?matrix.firstChild.nodeValue:matrix.innerHTML;
+  ma_txt=" "+ma_txt+" ";
+  columns=ma_txt.length;
+  if (w3c) {
+    while (matrix.childNodes.length) matrix.removeChild(matrix.childNodes[0]);
+    ma_tab=document.createElement("table");
+    ma_tab.setAttribute("border", 0);
+    ma_tab.setAttribute("align", effectalign);
+    ma_tab.style.backgroundColor="#000000";
+    ma_bod=document.createElement("tbody");
+    for (x=0; x<rows; x++) {
+      ma_row=document.createElement("tr");
+      for (y=0; y<columns; y++) {
+        matemp=document.createElement("td");
+        matemp.setAttribute("id", "Mx"+x+"y"+y);
+        matemp.className="matrix";
+        matemp.appendChild(document.createTextNode(String.fromCharCode(160)));
+        ma_row.appendChild(matemp);
+      }
+      ma_bod.appendChild(ma_row);
+    }
+    ma_tab.appendChild(ma_bod);
+    matrix.appendChild(ma_tab);
+  } else {
+    ma_tab='<ta'+'ble align="'+effectalign+'" border="0" style="background-color:#000000">';
+    for (var x=0; x<rows; x++) {
+      ma_tab+='<t'+'r>';
+      for (var y=0; y<columns; y++) {
+        ma_tab+='<t'+'d class="matrix" id="Mx'+x+'y'+y+'">&nbsp;</'+'td>';
+      }
+      ma_tab+='</'+'tr>';
+    }
+    ma_tab+='</'+'table>';
+    matrix.innerHTML=ma_tab;
+  }
+  ma_cho=ma_txt;
+  for (x=0; x<columns; x++) {
+    ma_cho+=String.fromCharCode(32+Math.floor(Math.random()*94));
+    m_copo[x]=0;
+  }
+  ma_bod=setInterval("mytricks()", speed);
+}
+
+function mytricks() {
+  x=0;
+  for (y=0; y<columns; y++) {
+    x=x+(m_copo[y]==100);
+    ma_row=m_copo[y]%100;
+    if (ma_row && m_copo[y]<100) {
+      if (ma_row<rows+1) {
+        if (w3c) {
+          matemp=document.getElementById("Mx"+(ma_row-1)+"y"+y);
+          matemp.firstChild.nodeValue=m_coch[y];
+        }
+        else {
+          matemp=document.all["Mx"+(ma_row-1)+"y"+y];
+          matemp.innerHTML=m_coch[y];
+        }
+        matemp.style.color="#33ff66";
+        matemp.style.fontWeight="bold";
+      }
+      if (ma_row>1 && ma_row<rows+2) {
+        matemp=(w3c)?document.getElementById("Mx"+(ma_row-2)+"y"+y):document.all["Mx"+(ma_row-2)+"y"+y];
+        matemp.style.fontWeight="normal";
+        matemp.style.color="#00ff00";
+      }
+      if (ma_row>2) {
+          matemp=(w3c)?document.getElementById("Mx"+(ma_row-3)+"y"+y):document.all["Mx"+(ma_row-3)+"y"+y];
+        matemp.style.color="#009900";
+      }
+      if (ma_row<Math.floor(rows/2)+1) m_copo[y]++;
+      else if (ma_row==Math.floor(rows/2)+1 && m_coch[y]==ma_txt.charAt(y)) zoomer(y);
+      else if (ma_row<rows+2) m_copo[y]++;
+      else if (m_copo[y]<100) m_copo[y]=0;
+    }
+    else if (Math.random()>0.9 && m_copo[y]<100) {
+      m_coch[y]=ma_cho.charAt(Math.floor(Math.random()*ma_cho.length));
+      m_copo[y]++;
+    }
+  }
+  if (x==columns) clearInterval(ma_bod);
+}
+
+function zoomer(ycol) {
+  var mtmp, mtem, ytmp;
+  if (m_copo[ycol]==Math.floor(rows/2)+1) {
+    for (ytmp=0; ytmp<rows; ytmp++) {
+      if (w3c) {
+        mtmp=document.getElementById("Mx"+ytmp+"y"+ycol);
+        mtmp.firstChild.nodeValue=m_coch[ycol];
+      }
+      else {
+        mtmp=document.all["Mx"+ytmp+"y"+ycol];
+        mtmp.innerHTML=m_coch[ycol];
+      }
+      mtmp.style.color="#33ff66";
+      mtmp.style.fontWeight="bold";
+    }
+    if (Math.random()<reveal) {
+      mtmp=ma_cho.indexOf(ma_txt.charAt(ycol));
+      ma_cho=ma_cho.substring(0, mtmp)+ma_cho.substring(mtmp+1, ma_cho.length);
+    }
+    if (Math.random()<reveal-1) ma_cho=ma_cho.substring(0, ma_cho.length-1);
+    m_copo[ycol]+=199;
+    setTimeout("zoomer("+ycol+")", speed);
+  }
+  else if (m_copo[ycol]>200) {
+    if (w3c) {
+      mtmp=document.getElementById("Mx"+(m_copo[ycol]-201)+"y"+ycol);
+      mtem=document.getElementById("Mx"+(200+rows-m_copo[ycol]--)+"y"+ycol);
+    }
+    else {
+      mtmp=document.all["Mx"+(m_copo[ycol]-201)+"y"+ycol];
+      mtem=document.all["Mx"+(200+rows-m_copo[ycol]--)+"y"+ycol];
+    }
+    mtmp.style.fontWeight="normal";
+    mtem.style.fontWeight="normal";
+    setTimeout("zoomer("+ycol+")", speed);
+  }
+  else if (m_copo[ycol]==200) m_copo[ycol]=100+Math.floor(rows/2);
+  if (m_copo[ycol]>100 && m_copo[ycol]<200) {
+    if (w3c) {
+      mtmp=document.getElementById("Mx"+(m_copo[ycol]-101)+"y"+ycol);
+      mtmp.firstChild.nodeValue=String.fromCharCode(160);
+      mtem=document.getElementById("Mx"+(100+rows-m_copo[ycol]--)+"y"+ycol);
+      mtem.firstChild.nodeValue=String.fromCharCode(160);
+    }
+    else {
+      mtmp=document.all["Mx"+(m_copo[ycol]-101)+"y"+ycol];
+      mtmp.innerHTML=String.fromCharCode(160);
+      mtem=document.all["Mx"+(100+rows-m_copo[ycol]--)+"y"+ycol];
+      mtem.innerHTML=String.fromCharCode(160);
+    }
+    setTimeout("zoomer("+ycol+")", speed);
+  }
+}
+// -->
+</script>
+
+</HEAD>
+<BODY background="background1.jpg">
+
+<div align=left style="margin-left: 5%;"> 
+<div align=left style="margin-right: 5%;">
+
+<center><div id="matrix"> "Disclaimer & Reprint Permission" </div></center>
+
+<div align="center"><h1>Disclaimer & Reprint Permission </h1></div>
+<center><img src="niceline1.jpg" width="580" height="8"></a></center>
+<P><center><font color=red size=6>"ANY RISK REAL OR IMPLIED FROM USING THIS INFORMATION IS STRICTLY THE RESPONSIBILITY OF THE USER."</font></center><BR>
+<center><img src="niceline1.jpg" width="580" height="8"></a>
+<font color=red size=6><BR>Dansmc does not warrant that the information contained in this Web Site meets your
+requirements or that the information is free of errors. The information may include technical inaccuracies or typographical errors.</font></center><BR>
+<center><img src="niceline1.jpg" width="580" height="8"></a></center>
+<BR>
+<center><P><font size=5 face=tahoma><B>If you would like to advertise on Dansmc.com <BR><a href="ads.htm"><U>Click Here.</U></A></B></center>
+<BR>
+<center><img src="niceline1.jpg" width="580" height="8"></a></center>
+<P><font size=4 face=tahoma>OK, I have to confess... I've been a bad boy. I have stolen stuff. Yes indeed, the thing I hate most I have become. A thief... sort of, any way. If it was useful to you, and I could not find anyone to get permission from, I just went and used it. (stole it). If you made or created something I used here and I did not give you credit, <font color=red>PLEASE</font> tell me and I will give you credit. If you do not want me to use it, send me proof that you own it, and I will remove it. Better yet, I'll give you credit for it. I mean really, I don't make any money from this. If you want your stuff to make you money, you will have to go somewhere else. Unless you can think of a way we can both make money from it, in which case I'm all ears. I always try to get permission to use something, but if I can't contact you or I don't know who you are... well... I just use it ! Sorry ! 
+<P>I wrote all the text on this site unless I state otherwise. I took 95 % of the pictures, but some of the JPG and GIF pictures... ? Like the shop manual for the 250cc Super Max. It has no copyright on it and well... I don't know who to ask.
+<P>I figure you would want your fellow motorcyclists to get the information. If it is yours and you want me to take it off, I will. But, wouldn't it be better if we worked something out ? If  So... <a href="emailtome.htm">E-Mail Me</A><BR><BR>
+<center><img src="niceline1.jpg" width="580" height="8"></a></center>
+<P>I would like to thank the following people for giving me permission to use information from their catalogs, magazines, books, and web sites. By doing this they help many people, worldwide.
+<BR><BR>
+<a href="http://www.wps-inc.com/">Western Power Sports</a><BR>
+<a href="http://www.flandersco.com/">Flanders Co.</a><BR>
+Sport Rider Magazine, USA<BR>
+Mrs. Connie Perryman, England<BR>
+<a href="http://www.stella-alpina.fsnet.co.uk/index.html">Bob Lane, England</A><BR> 
+<a href="http://www.dynamicdrive.com/dynamicindex10/index.html">Dynamic Drive.com</a><BR>
+<a href="http://www.zzn.com/membersarea_en/home.asp?Mailring=Default">ZapZone.com</A><BR>
+<a href="http://javascript.internet.com/">JavaScript Source</A><BR>
+
+</P>
+   
+
+<BR>
+<center><img src="niceline1.jpg" width="580" height="8"></a></center>
+<center><BR><BR><font color=red size=6>REPRINT PERMISSION</font></center><BR><BR>
+If you wish to reprint any part of the Dan's Motorcycle Website here is what you must do:
+<OL>
+<LI>It <u>MUST</u> be given away free. You may not charge anything for it. You may not make any money off or from the course. That means that if you are being paid in any way, shape or form by any organization, government or with a money grant from someone you will need to E-Mail me and get permission. I am always open to any legal way that you and I can make some money with the motorcycle course.
+<LI>It <U>CANNOT be changed in any way, shape or form.</U> You may change the color of the background, but the wording and pictures must stay the way they are.
+<LI>You <U>MUST</U> give credit to the Dan's Motorcycle Website (www.dansmc.com) for anything you use.
+<LI>If possible, <a href="emailtome.htm">notify me</A> that you are using the material and what you are using.
+</OL>
+<BR><BR><BR></font>
+<center><img src="niceline1.jpg" width="580" height="8"></a></center>
+<div align="center">
+<a href="index.htm"><H4>BACK TO MOTORCYCLE HOME PAGE</h4></a></div>
+<center>
+<form name="form">
+<select name="site" size=1>
+<option value="">go to....
+<option value="http://www.dansmc.com/index.htm">Home
+<option value="http://www.dansmc.com/indexindex.htm">Index
+
+<option value="http://www.dansmc.com/Bible1.htm">Ultimate Shop Manual
+<option value="http://www.dansmc.com/shopmanual2.htm">Online Shop Manuals
+
+<option value="http://www.dansmc.com/donation.htm">DONATION
+<option value="http://www.dansmc.com/emailtome.htm">E-Mail To ME
+
+</select>
+<input type=button value="go!" onClick="javascript:formHandler(this)">
+</form>
+</center>
+
+
+</center>
+<center><font size=2>Copyright &copy; 1999-2006 dansmc.com. All rights reserved.</font></center>
+
+</div>
+
+</BODY>
+</HTML>

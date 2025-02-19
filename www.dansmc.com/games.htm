@@ -1,0 +1,206 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<TITLE>Dan's Motorcycle Games </TITLE>
+<META Name="description" content="Games.">
+<META Name="keywords" Content="games...">
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.9">
+
+<link rel="stylesheet" href="screen.css" type="text/css" media="Screen" />
+
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Original:  Brian Gosselin (bgaudiodr@aol.com) -->
+<!-- Web Site:  http://www.bgaudiodr.iwarp.com -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+var image_directory = "http://www.your-web-site-address-here.com/simon-says-pics/";
+var ok = false; 
+var pcbusy = false; 
+var userturn = true;
+var butdown = false;
+var stage = 1;
+var cnt = 1;
+var pcclicks = new Array();
+var userclicks = new Array();
+var pos;
+var tst = true;
+var msg = "Click Go!";
+btn1 = new Image();
+btn1.src = image_directory + "purple.gif";
+btn2 = new Image();
+btn2.src = image_directory + "yellow.gif";
+function updown(isdn) {
+if (isdn) {
+document.f[('pl'+pos)].src = image_directory + 'yellow.gif';
+}
+else {
+document.f[('pl'+pos)].src= image_directory + 'purple.gif';
+   }
+}
+function dopc() {
+document.f.st.value = stage;
+if (cnt <= stage) {
+pcbusy = true;
+userturn = false;
+document.f.s.value = "Simon's  Turn";
+setTimeout("pos=Math.floor((Math.random()*8)+1); updown(true)",500);
+setTimeout("updown(false) ; pcclicks[cnt]=pos; cnt++; dopc()",1200);
+}
+else {
+userclicks = new Array();
+cnt = 1;
+document.f.s.value = "Player's  Turn";
+pcbusy = false;
+userturn = true;
+document.f.b.focus();
+   }
+}
+function testclicks() {
+tst = true;
+for(i = 1;cnt > i; i++) {
+if (pcclicks[i] == userclicks[i]) {
+tst = true && tst;
+}
+else {
+tst = false && tst;
+   }
+}
+if(tst) {
+setTimeout("stage++ ; document.f.st.value=stage ; alert('That is correct!  Advancing to the next level....'); document.f.s.value=msg ; document.f.b.focus()",300);
+}
+else {
+setTimeout("stage=1 ; cnt=1 ; pcclicks=new Array() ; document.f.st.value=stage ; alert('Sorry, that is not correct.  Start a new game if you would like to play again.') ; document.f.s.value=msg",300);
+}
+cnt = 1;
+}
+function testclk(downflag, pos) {
+if (userturn&&(!pcbusy)) {
+if (downflag) {
+document.f[('pl'+pos)].src = image_directory + 'yellow.gif';
+}else{
+document.f[('pl'+pos)].src = image_directory + 'purple.gif';
+}
+if (ok && !downflag) {
+userclicks[cnt] = pos;
+cnt++;
+if (pcclicks.length == userclicks.length) {
+testclicks();
+         }
+      }
+   }
+}
+//  End -->
+</script>
+
+
+</HEAD>
+
+<BODY background="background1.jpg">
+
+<div align=left style="margin-left: 5%;"> 
+<div align=left style="margin-right: 5%;">
+
+<div align="center"><h1>GAMES</h1></div><center><img src="niceline1.jpg" width="580" height="8"></center>
+<BR><BR>
+
+
+
+<center><font size=4><P>This is totally worthless, but it might be some fun. Click on the Game you want to play. <BR>I really like the "Ball Drop", "Battle Ship", and "Asteroids" games.
+<p><a href="games/battleship/battleship.htm">BATTLE SHIP</A>
+<P><a href="games/asteroids/asteroids.htm">ASTEROIDS</A>
+<p><a href="games/maze/maze.htm">THE MAZE</A>
+<p><a href="games/poker_dice/poker_dice.htm">POKER DICE</A>
+<P><a href="games/rockets/rockets.htm">ROCKET BLASTER</A>
+<P><a href="games/same_game/same_game.htm">BALL DROP GAME</A>
+<P><a href="games/simon_says/simon_says.htm">SIMON SAYS</A>
+<P><a href="games/tic_tac_toe/tic_tac_toe.htm">TIC-TAC-TOE</A>
+<P><a href="games/yahtzee/yahtzee.htm">YAHTZEE</A>
+<P><a href="games/mini_putt/mini-putt.htm">MINI-PUTT GOLF</A></P></font></center>
+<BR><BR>
+   
+<center><img src="niceline1.jpg" width="580" height="8"></center><BR><BR>
+
+<center><a href="http://www.dansmc.com/http://www.dansmc.com/MC_repaircourse.htm"><font size=3>Back to M/C Repair Course</font></A>
+<BR><BR>
+<font size=1 color=black>Did this page help you ? Would you like to help us ? If so </font><a href="donation.htm"><font size=1 color=black>Click HERE</A></font></a></center><BR>
+
+<div align="center">
+<a href="indexindex.htm"><h4>BACK TO INDEX</h4></a>
+<a href="index.htm"><H4>MOTORCYCLE HOME PAGE</h4></a></div>
+<center><font size=2>Copyright &copy; 1999-2010 dansmc.com. All rights reserved.</font></center>
+
+
+</div>
+
+
+
+</BODY>
+</HTML>

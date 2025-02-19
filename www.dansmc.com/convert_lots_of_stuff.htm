@@ -1,0 +1,790 @@
+<HTML>
+<HEAD>
+<TITLE>Dan's Motorcycle Calculators</TITLE>
+<META Name="description" content="Conversion Calculators">
+<META Name="keywords" Content="conversion calculators...">
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.9">
+
+<link rel="stylesheet" href="screen.css" type="text/css" media="Screen" />
+
+
+
+
+<center>
+<form name="Calc">
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Original:  Joel Lavarez -->
+<!-- Web Site:  http://www.speed-online.com -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+var weight, eTime;
+var horsepower1, horsepower2, horsepower3, horsepower4;
+var temp1, temp2, temp3, temp4;
+var speed;
+var finalhp1, finalhp2, finalhp3, finalhp4, finalhp5, finalhp6;
+function create(form){
+eTime = form.elapsedTime.value;
+weight = form.vehicleWeight.value;
+temp1 = eTime / 5.825;
+temp1 = temp1 * temp1 * temp1;
+horsepower1 = weight / temp1;
+finalhp1 = roundOff(horsepower1, 2)
+horsepower2 = horsepower1 * 1.3;
+finalhp2 = roundOff(horsepower2, 2)
+text = "<HEAD><TITLE>1/4 Method</TITLE>";
+text += "</HEAD><BODY BGCOLOR=#000000 TEXT=#FFFFFF>";
+text += "<font face=arial size=-1><CENTER>";
+text += "Horsepower Results - 1/4 Mile Method</CENTER><P>";
+text += "Your " +form.carModel.value;
+text += " weighs about " +form.vehicleWeight.value+ " pounds ";
+text += "and can complete a 1/4 mile in about ";
+text += form.elapsedTime.value;
+text += " seconds. That means that you've got about " +finalhp1;
+text += " HP at the wheels, and about " + finalhp2;
+text += " HP at the flywheel.</font>";
+text += "<center><form><input type=button onClick='self.close()' ";
+text += "value='Close Window'></form></center></font>";
+resultsWindow=window.open("", "displayWindow", "toolbar=no,menubar=no,scrollbar=auto,resizable=no,width=320,height=180")
+resultsWindow.document.writeln(text);
+resultsWindow.document.close();
+}
+function input1(form) {
+Ctrl = form.carModel;
+if (Ctrl.value == "") {
+validatePrompt (Ctrl, "Please Input a Car Model.")
+return (false);
+} else
+return (true);
+}
+function input2(form) {
+Ctrl = form.vehicleWeight;
+if (Ctrl.value == "") {
+validatePrompt (Ctrl, "Please enter Your Vehicle Weight in Pounds.")
+return (false);
+} else
+return (true);
+}
+function input3(form) {
+Ctrl = form.elapsedTime;
+if (Ctrl.value == "") {
+validatePrompt (Ctrl, "Please enter Your 1/4 mile trapspeed. You can estimate...")
+return (false);
+} else
+return (true);
+}
+function runSubmit (form, button)  {
+if (!input1(form)) return;
+if (!input2(form)) return;
+if (!input3(form)) return;
+create(form);       
+return;
+}
+function validatePrompt (Ctrl, PromptStr) {
+alert (PromptStr)
+Ctrl.focus();
+return;
+}
+function roundOff(value, precision) {
+value = "" + value;
+precision = parseInt(precision);
+var whole = "" + Math.round(value * Math.pow(10, precision));
+var decPoint = whole.length - precision;
+if(decPoint != 0) {
+result = whole.substring(0, decPoint);
+result += ".";
+result += whole.substring(decPoint, whole.length);
+}
+else {
+result = whole;
+}
+return result;
+}
+// End -->
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Original: Alex Tu <boudha1@hotmail.com> -->
+<!-- Web Site:  http://www.geocities.com/MadisonAvenue/4368 -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+function formHandler(form){
+var URL = document.form.site.options[document.form.site.selectedIndex].value;
+window.location.href = URL;
+}
+// End -->
+</SCRIPT>
+
+<script type="text/javascript" src="expando.js">
+
+/* Expando Image Script ?2008 John Davenport Scheuer
+   as first seen in http://www.dynamicdrive.com/forums/
+   username: jscheuer1 - This Notice Must Remain for Legal Use
+   */
+
+</script>
+
+
+</HEAD>
+<BODY background="background1.jpg"><div align="center">
+
+<div align=left style="margin-left: 5%;"> 
+<div align=left style="margin-right: 5%;">
+
+<center><h1>DAN'S MOTORCYCLE<br>"CONVERSION CALCULATORS" </h1></div>
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+<font size=5><B>&#182;</B></font><font size=4 face=tahoma>The following is for demonstration purposes and<BR> no guarantees regarding the accuracy of the calculations are made.
+<BR><BR>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Generic Unit Conversion Program
+// Author    : Jonathan Weesner (jweesner@cyberstation.net)  21 Nov 95
+// Copyright : You want it? Take it! ... but leave the Author line intact please!
+function convertform(form){
+    var firstvalue = 0;
+    for (var i = 1; i <= form.count; i++) {
+       // Find first non-blank entry
+       if (form.elements[i].value != null && form.elements[i].value.length != 0) {
+	  if (i == 1 && form.elements[2].value != "") return false;
+	  firstvalue = form.elements[i].value / form.elements[i].factor;
+	  break;
+       }
+    }
+    if (firstvalue == 0) {
+       clearform(form);
+       return false;
+    }
+    for (var i = 1; i <= form.count; i++)
+       form.elements[i].value = formatvalue((firstvalue * form.elements[i].factor), form.rsize);
+    return true;
+}
+function formatvalue(input, rsize) {
+   var invalid = "**************************";
+   var nines = "999999999999999999999999";
+   var strin = "" + input;
+   var fltin = parseFloat(strin);
+   if (strin.length <= rsize) return strin;
+   if (strin.indexOf("e") != -1 ||
+       fltin > parseFloat(nines.substring(0,rsize)+".4"))
+      return invalid.substring(0, rsize);
+   var rounded = "" + (fltin + (fltin - parseFloat(strin.substring(0, rsize))));
+   return rounded.substring(0, rsize);
+}
+function resetform(form) {
+    clearform(form);
+    form[1].value = 1;
+    convertform(form);
+    return true;
+}
+function clearform(form) {
+    for (var i = 1; i <= form.count; i++) form[i].value = "";
+    return true;
+}
+<!-- done hiding from old browsers -->
+</SCRIPT>
+
+<CENTER>
+<FORM method=POST>
+<TABLE border=4>
+<TR>
+<TD COLSPAN=7 ALIGN=CENTER VALIGN=MIDDLE><H2>Distance Unit Conversion Calculator</H2></TD>
+</TR><TR>
+<TD ALIGN=CENTER>Meters</TD>
+<TD ALIGN=CENTER>Inches</TD>
+<TD ALIGN=CENTER>Feet</TD>
+<TD ALIGN=CENTER>Yards</TD>
+<TD ALIGN=CENTER>Miles</TD>
+<TD ALIGN=CENTER>Nautical<BR>Miles</TD>
+<TD><INPUT TYPE="button" VALUE="Calibrate" onclick="resetform(this.form)"></TD>
+</TR><TR>
+<TD><INPUT TYPE=TEXT NAME=val1 SIZE=7 onfocus="clearform(this.form)"></TD>
+<TD><INPUT TYPE=TEXT NAME=val2 SIZE=7 onfocus="clearform(this.form)"></TD>
+<TD><INPUT TYPE=TEXT NAME=val3 SIZE=7 onfocus="clearform(this.form)"></TD>
+<TD><INPUT TYPE=TEXT NAME=val4 SIZE=7 onfocus="clearform(this.form)"></TD>
+<TD><INPUT TYPE=TEXT NAME=val5 SIZE=7 onfocus="clearform(this.form)"></TD>
+<TD><INPUT TYPE=TEXT NAME=val6 SIZE=7 onfocus="clearform(this.form)"></TD>
+<TD><INPUT TYPE="button"  VALUE="Calculate" onclick="convertform(this.form)"></TD>
+</TR>
+</TABLE>
+</FORM>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Set conversion factors for each item in form. All
+// factors must convert the first item to the current item.
+// Be sure to use the correct form index. The first form is
+// always index "0" and remaining forms are numbered in the
+// order they appear in the document.
+document.forms[0].count = 6;  // number of unit types
+document.forms[0].rsize = 7;  // Rounding size, use same as SIZE
+document.forms[0].val1.factor = 1;            // m to m.
+document.forms[0].val2.factor = 39.37007874;  // m to in.
+document.forms[0].val3.factor = 3.280839895;  // m to ft.
+document.forms[0].val4.factor = 1.093613298;  // m to yards.
+document.forms[0].val5.factor = 0.00062137119; // m to mi.
+document.forms[0].val6.factor = 0.000547045; // m to nm.
+<!-- done hiding from old browsers -->
+</SCRIPT>
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+<FORM method=POST>
+<TABLE border=4>
+<TR>
+<TD COLSPAN=7 ALIGN=CENTER VALIGN=MIDDLE><H2>Weight Unit Conversion Calculator</H2></TD>
+</TR><TR>
+<TD ALIGN=CENTER>Kilograms</TD>
+<TD ALIGN=CENTER>Ounces</TD>
+<TD ALIGN=CENTER>Pounds</TD>
+<TD ALIGN=CENTER>Troy<BR>Pounds</TD>
+<TD ALIGN=CENTER>Stones</TD>
+<TD ALIGN=CENTER>Short<BR>Tons</TD>
+<TD ALIGN=CENTER>Long<BR>Tons</TD>
+<TD><INPUT TYPE="button" VALUE="Calibrate" onClick=resetform(this.form)></TD>
+</TR><TR>
+<TD><INPUT TYPE=TEXT NAME=val1 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val2 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val3 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val4 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val5 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val6 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val7 SIZE=6 onFocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE="button"  VALUE="Calculate"  onclick=convertform(this.form)></TD>
+</TR>
+</TABLE>
+</FORM>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Set conversion factors for each item in form.
+document.forms[1].count = 7;
+document.forms[1].rsize = 6;
+document.forms[1].val1.factor = 1;
+document.forms[1].val2.factor = 35.273944;
+document.forms[1].val3.factor = 2.2046215;
+document.forms[1].val4.factor = 2.6792765;
+document.forms[1].val5.factor = 0.1574731232747;
+document.forms[1].val6.factor = 0.00110231075;
+document.forms[1].val7.factor = 0.001;
+<!-- done hiding from old browsers -->
+</SCRIPT>
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+<FORM method=POST>
+<TABLE border=4>
+<TR>
+<TD COLSPAN=7 ALIGN=CENTER VALIGN=MIDDLE><H2>Volume Unit Conversion Calculator</H2></TD>
+</TR><TR>
+<TD ALIGN=CENTER>Liters</TD>
+<TD ALIGN=CENTER>Fluid<BR>Ounces</TD>
+<TD ALIGN=CENTER>Quarts</TD>
+<TD ALIGN=CENTER>Gallons</TD>
+<TD ALIGN=CENTER>Imperial<BR>Gallons</TD>
+<TD><INPUT TYPE="button" VALUE="Calibrate" onclick=resetform(this.form)></TD>
+</TR><TR>
+<TD><INPUT TYPE=TEXT NAME=val1 SIZE=6 onfocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val2 SIZE=6 onfocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val3 SIZE=6 onfocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val4 SIZE=6 onfocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE=TEXT NAME=val5 SIZE=6 onfocus="clearform(this.form)"</TD>
+<TD><INPUT TYPE="button"  VALUE="Calculate" onclick=convertform(this.form)></TD>
+</TR>
+</TABLE>
+</FORM>
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+</CENTER>
+<SCRIPT LANGUAGE="JavaScript">
+// Set conversion factors for each item in form.
+document.forms[2].count = 5;
+document.forms[2].rsize = 6;
+document.forms[2].val1.factor = 1;
+document.forms[2].val2.factor = 33.8239926;
+document.forms[2].val3.factor = 1.056998;
+document.forms[2].val4.factor = 0.2642499;
+document.forms[2].val5.factor = 0.2200433;
+</SCRIPT>
+
+
+
+<H3>Convert Ounces to Grams and Back</H3>
+<FORM>
+<table>
+<tr>
+<td>Input:</td> 
+<td><INPUT TYPE="text" NAME="xin" SIZE=20></td>
+<td><INPUT TYPE="radio" NAME="g_or_o" VALUE="grams" CHECKED>gr2oz / 
+<INPUT TYPE="radio" NAME="g_or_o" VALUE="ounces">oz2gr</td>
+</tr>
+<tr>
+<td>Result:</td>
+<td><INPUT TYPE="text" NAME="out" SIZE=20></td>
+</tr>
+<tr>
+<td><INPUT TYPE="button" VALUE="Calculate" onClick="gr_oz(this.form)"></td>
+</tr>
+</table>
+
+</FORM>
+
+<SCRIPT>
+<!--Convert grams to ounces
+//   Written by The Omega
+//   http://www.geocities.com/Area51/Corridor/4381
+//   the_omega@geocities.com
+function gr_oz(form){
+var zin=parseFloat(eval(form.xin.value))
+if (form.g_or_o[0].checked==true)
+form.out.value=zin/28.3349523125+" oz"
+else
+form.out.value=zin*28.3349523125+" gr"}
+//-->
+</SCRIPT><P>
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+
+<center>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide JavaScript from Java-Impaired Browsers
+function initArray() {
+  this.length = initArray.arguments.length;
+  for (var i = 0; i < this.length; i++) {
+    this[i] = initArray.arguments[i];
+    }
+  }
+/* Please don't ask about this work-around. It works... We're sure arrays
+    will be better supported soon. */
+var isn05 = new initArray("4b","5b","8b","8b");
+isn05[0] = "~01~10.0005787~20.00002143~30.5541~40.01732~50.01488~60.004329~70.000465~80.01639~9";
+isn05[1] = "~01728~11~20.03704~3957.5~429.92~525.71~67.481~70.8036~828.32~9";
+isn05[2] = "~046656~127~21~325853~4807.9~5694.3~6202.2~721.70~8764.6~9";
+isn05[3] = "~01.805~10.001044~20.00003868~31~40.03125~50.02686~60.007812~70.0008392~80.02957~9";
+isn05[4] = "~057.75~10.03342~20.001238~332~41~50.8594~60.25~70.02686~80.9464~9";
+isn05[5] = "~067.20~10.03889~20.001440~337.24~41.164~51~60.2909~70.03125~81.101~9";
+isn05[6] = "~0231~10.1337~20.004951~3128~44~53.437~61~70.1074~83.785~9";
+isn05[7] = "~02150~11.244~20.04609~31192~437.24~532~69.309~71~835.24~9";
+isn05[8] = "~061.02~10.03531~20.001308~333.81~41.057~50.9081~60.2642~70.02838~81~9";
+
+
+function volCon() {
+  // First, get the variables checked by the user
+  for (var i = 0; i < 9; i++) {
+    if (document.isnform05.voli[i].checked) {
+      voli = i;
+      volinm = document.isnform05.voli[i].value;
+      }
+    }
+  for (var i = 0; i < 9; i++) {
+    if (document.isnform05.volo[i].checked) {
+      volo = i;
+      volonm = document.isnform05.volo[i].value;
+      }
+    }
+  // Now grab the numeric input by user and parse to be sure numeric
+  useri = document.isnform05.volinp.value;
+  if (useri == 0) {
+    useri = 1;
+    document.isnform05.volinp.value = useri;
+    }
+  mulstr = isn05[voli];
+  picker = "~" + volo;
+  ps = mulstr.indexOf(picker);
+  volo++;
+  picker = "~" + volo;
+  ps1 = mulstr.indexOf(picker);
+  mulstr = mulstr.substring((ps + 2),ps1);
+  ps = (useri * mulstr);
+  picker = "";
+  picker += ps
+  ps1 = picker.indexOf(".");
+  if (ps1 > -1) {
+    // Correct for binary/floating point conversion error
+    ps = ps + .000001;
+    picker = "";
+    picker += ps;
+    ps2 = picker.indexOf("e");
+    if (ps2 < 0) {
+      picker = picker.substring(0,(ps1 + 6));
+      }
+    if (ps2 == 0 || ps2 > 0) {
+      ps3 = picker.indexOf("00000");
+      if (ps3 > 0) {
+        picker = picker.substring(0,ps3 + 1) + picker.substring(ps2,picker.length);
+        }
+      }
+    }
+  picker = useri + " " + volinm + " = " + picker + " " + volonm
+  document.isnform05.volout.value = picker;
+  }
+// End Hiding -->
+</SCRIPT>
+
+<TABLE BORDER=1 WIDTH=486>
+<TR><TD COLSPAN=10 ALIGN=CENTER><FORM NAME="isnform05"><FONT COLOR="blue"><B>Volume/Capacity Equivalents</B></FONT></TD></TR>
+<TR><TD COLSPAN=10 VALIGN=TOP><FONT SIZE=1><B>First, type the number you wish converted here: </B>
+<INPUT TYPE="text" NAME="volinp" SIZE=30 VALUE="" onChange="volCon();"><BR><B>Then, click radio buttons for desired conversion:</FONT></TD></TR>
+<TR><TD ALIGN=CENTER><FONT COLOR="red" SIZE=1><B>From:</B></FONT></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Cubic Inches<BR><INPUT TYPE="radio" NAME="voli" VALUE="Cubic Inches" CHECKED onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Cubic Feet<BR><INPUT TYPE="radio" NAME="voli" VALUE="Cubic Feet" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Cubic Yards<BR><INPUT TYPE="radio" NAME="voli" VALUE="Cubic Yards" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Fluid Ounces*<BR><INPUT TYPE="radio" NAME="voli" VALUE="Fluid Ounces" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Liquid Quarts<BR><INPUT TYPE="radio" NAME="voli" VALUE="US Liquid Quarts" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Dry Quarts<BR><INPUT TYPE="radio" NAME="voli" VALUE="US Dry Quarts" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Gallons<BR><INPUT TYPE="radio" NAME="voli" VALUE="US Gallons" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Bushels<BR><INPUT TYPE="radio" NAME="voli" VALUE="US Bushels" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Liters<BR> <BR><INPUT TYPE="radio" NAME="voli" VALUE="Liters" onClick = ""></TD></TR>
+<TR><TD ALIGN=CENTER><FONT COLOR="red" SIZE=1><B>To:</B></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Cubic Inches<BR><INPUT TYPE="radio" NAME="volo" VALUE="Cubic Inches" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Cubic Feet<BR><INPUT TYPE="radio" NAME="volo" VALUE="Cubic Feet" CHECKED onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Cubic Yards<BR><INPUT TYPE="radio" NAME="volo" VALUE="Cubic Yards" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Fluid Ounces*<BR><INPUT TYPE="radio" NAME="volo" VALUE="Fluid Ounces" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Liquid Quarts<BR><INPUT TYPE="radio" NAME="volo" VALUE="US Liquid Quarts" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Dry Quarts<BR><INPUT TYPE="radio" NAME="volo" VALUE="US Dry Quarts" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Gallons<BR><INPUT TYPE="radio" NAME="volo" VALUE="US Gallons" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>US Bushels<BR><INPUT TYPE="radio" NAME="volo" VALUE="US Bushels" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Liters<BR> <BR><INPUT TYPE="radio" NAME="volo" VALUE="Liters" onClick = ""></TD></TR>
+<TR><TD COLSPAN=10 ALIGN=CENTER VALIGN=TOP><FONT SIZE=1><INPUT TYPE="button" VALUE=" Click for Conversion " onClick="volCon();"> <INPUT TYPE="reset" VALUE=" Reset Values "><BR><INPUT TYPE="text" NAME="volout" SIZE=60 VALUE="" onClick="volCon();"><BR>* Apothecary
+</FONT></TD></TR>
+</TABLE></FORM>
+
+<center>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide JavaScript from Java-Impaired Browsers
+function initArray() {
+  this.length = initArray.arguments.length;
+  for (var i = 0; i < this.length; i++) {
+    this[i] = initArray.arguments[i];
+    }
+  }
+/* Please don't ask about this work-around. It works... We're sure arrays
+    will be better supported soon. */
+var isn04 = new initArray("4b","5b","8b","8b");
+isn04[0] = "~01~11550~210.76~31.196~40.0395~50.002471~60.0009884~70.0002471~80.0000003861~9";
+isn04[1] = "~00.0006452~11~20.006944~30.0007716~40.00002551~50.000001594~60.0000006377~70.0000001594~82.291e-10~9";
+isn04[2] = "~00.09290~1144~21~30.1111~40.003673~50.0002296~60.00009183~70.00002296~83.587e-8~9";
+isn04[3] = "~00.8361~11296~29~31~40.03306~50.002066~60.0008264~70.0002066~83.228e-7~9";
+isn04[4] = "~025.29~139204~2272.25~330.25~41~50.0625~60.025~70.00625~89.766e-6~9";
+isn04[5] = "~0404.7~1627264~24356~3484~416~51~60.4~70.1~80.00015625~9";
+isn04[6] = "~01012~11568160~210890~31210~440~52.5~61~70.25~80.000390625~9";
+isn04[7] = "~04047~16272640~243560~34840~4160~510~64~71~80.0015625~9";
+isn04[8] = "~02589988~14013355318~227878400~33097600~4102400~56400~62560~7640~81~9";
+
+
+function areCon() {
+  // First, get the variables checked by the user
+  for (var i = 0; i < 9; i++) {
+    if (document.isnform04.arei[i].checked) {
+      arei = i;
+      areinm = document.isnform04.arei[i].value;
+      }
+    }
+  for (var i = 0; i < 9; i++) {
+    if (document.isnform04.areo[i].checked) {
+      areo = i;
+      areonm = document.isnform04.areo[i].value;
+      }
+    }
+  // Now grab the numeric input by user and parse to be sure numeric
+  useri = document.isnform04.areinp.value;
+  if (useri == 0) {
+    useri = 1;
+    document.isnform04.areinp.value = useri;
+    }
+  mulstr = isn04[arei];
+  picker = "~" + areo;
+  ps = mulstr.indexOf(picker);
+  areo++;
+  picker = "~" + areo;
+  ps1 = mulstr.indexOf(picker);
+  mulstr = mulstr.substring((ps + 2),ps1);
+  ps = (useri * mulstr);
+  picker = "";
+  picker += ps
+  ps1 = picker.indexOf(".");
+  if (ps1 > -1) {
+    // Correct for binary/floating point conversion error
+    ps = ps + .000001;
+    picker = "";
+    picker += ps;
+    ps2 = picker.indexOf("e");
+    if (ps2 < 0) {
+      picker = picker.substring(0,(ps1 + 6));
+      }
+    if (ps2 == 0 || ps2 > 0) {
+      ps3 = picker.indexOf("00000");
+      if (ps3 > 0) {
+        picker = picker.substring(0,ps3 + 1) + picker.substring(ps2,picker.length);
+        }
+      }
+    }
+  picker = useri + " " + areinm + " = " + picker + " " + areonm
+  document.isnform04.areout.value = picker;
+  }
+// End Hiding -->
+</SCRIPT>
+
+<TABLE BORDER=1 WIDTH=486>
+<TR><TD COLSPAN=9 ALIGN=CENTER><FORM NAME="isnform04"><FONT COLOR="blue"><B>Area Equivalents</B></FONT></TD></TR>
+<TR><TD COLSPAN=10 VALIGN=TOP><FONT SIZE=1><B>First, type the number you wish converted here: </B>
+<INPUT TYPE="text" NAME="areinp" SIZE=30 VALUE="" onChange="areCon();"><BR><B>Then, click radio buttons for desired conversion:</FONT></TD></TR>
+<TR><TD ALIGN=CENTER><FONT COLOR="red" SIZE=1><B>From:</B></FONT></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Meters<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Meters" CHECKED onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Inches<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Inches" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Feet<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Feet" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Yards<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Yards" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Rods<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Rods" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Chains<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Chains" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Roods<BR> <BR><INPUT TYPE="radio" NAME="arei" VALUE="Roods" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Acres<BR> <BR><INPUT TYPE="radio" NAME="arei" VALUE="Acres" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Miles<BR><INPUT TYPE="radio" NAME="arei" VALUE="Square Miles" onClick = ""></TD></TR>
+<TR><TD ALIGN=CENTER><FONT COLOR="red" SIZE=1><B>To:</B></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Meters<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Meters" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Inches<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Inches" CHECKED onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Feet<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Feet" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Yards<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Yards" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Rods<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Rods" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Chains<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Chains" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Roods<BR> <BR><INPUT TYPE="radio" NAME="areo" VALUE="Roods" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Acres<BR> <BR><INPUT TYPE="radio" NAME="areo" VALUE="Acres" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Square Miles<BR><INPUT TYPE="radio" NAME="areo" VALUE="Square Miles" onClick = ""></TD></TR>
+<TR><TD COLSPAN=10 ALIGN=CENTER VALIGN=TOP><FONT SIZE=1><INPUT TYPE="button" VALUE=" Click for Conversion " onClick="areCon();"> <INPUT TYPE="reset" VALUE=" Reset Values "><BR><INPUT TYPE="text" NAME="areout" SIZE=60 VALUE="" onClick="areCon();">
+</FONT></TD></TR>
+</TABLE></FORM>
+
+
+<center>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide JavaScript from Java-Impaired Browsers
+function initArray() {
+  this.length = initArray.arguments.length;
+  for (var i = 0; i < this.length; i++) {
+    this[i] = initArray.arguments[i];
+    }
+  }
+/* Please don't ask about this work-around. It functions... We're sure arrays
+    will be better supported soon. */
+var isn03 = new initArray("4b","5b","8b","8b");
+isn03[0] = "~01~10.0166667~20.0020833~30.00052083~40.0001302~50.0000651~60.000016276~73.87e-7~8";
+isn03[1] = "~060~11~20.125~30.03125~40.0078125~50.00390625~60.000976562~72.3251e-5~8";
+isn03[2] = "~0480~18~21~30.25~40.0625~50.03125~60.0078125~70.0001860~8";
+isn03[3] = "~01920~132~24~31~40.25~50.125~60.03125~70.000744047~8";
+isn03[4] = "~07680~1128~216~34~41~50.5~60.125~70.00297619~8";
+isn03[5] = "~015360~1256~232~38~42~51~60.25~70.00595238~8";
+isn03[6] = "~061440~11024~2128~332~48~54~61~70.023809523~8";
+isn03[7] = "~02580480~143008~25376~31344~4336~5168~642~71~8";
+
+
+function fluCon() {
+  // First, get the variables checked by the user
+  for (var i = 0; i < 8; i++) {
+    if (document.isnform03.flui[i].checked) {
+      flui = i;
+      fluinm = document.isnform03.flui[i].value;
+      }
+    }
+  for (var i = 0; i < 8; i++) {
+    if (document.isnform03.fluo[i].checked) {
+      fluo = i;
+      fluonm = document.isnform03.fluo[i].value;
+      }
+    }
+  // Now grab the numeric input by user and parse to be sure numeric
+  useri = document.isnform03.fluinp.value;
+  if (useri == 0) {
+    useri = 1;
+    document.isnform03.fluinp.value = useri;
+    }
+  mulstr = isn03[flui];
+  picker = "~" + fluo;
+  ps = mulstr.indexOf(picker);
+  fluo++;
+  picker = "~" + fluo;
+  ps1 = mulstr.indexOf(picker);
+  mulstr = mulstr.substring((ps + 2),ps1);
+  ps = (useri * mulstr);
+  picker = "";
+  picker += ps
+  ps1 = picker.indexOf(".");
+  if (ps1 > -1) {
+    // Correct for binary/floating point conversion error
+    ps = ps + .000001;
+    picker = "";
+    picker += ps;
+    ps2 = picker.indexOf("e");
+    if (ps2 < 0) {
+      picker = picker.substring(0,(ps1 + 6));
+      }
+    if (ps2 == 0 || ps2 > 0) {
+      ps3 = picker.indexOf("00000");
+      if (ps3 > 0) {
+        picker = picker.substring(0,ps3 + 1) + picker.substring(ps2,picker.length);
+        }
+      }
+    }
+  picker = useri + " " + fluinm + " = " + picker + " " + fluonm
+  document.isnform03.fluout.value = picker;
+  }
+// End Hiding -->
+</SCRIPT>
+
+<TABLE BORDER=1 WIDTH=486>
+<TR><TD COLSPAN=9 ALIGN=CENTER><FORM NAME="isnform03"><FONT COLOR="blue"><B>U.S. Fluid or Liquid Equivalents</B></FONT></TD></TR>
+<TR><TD COLSPAN=9 VALIGN=TOP><FONT SIZE=1><B>First, type the number you wish converted here: </B>
+<INPUT TYPE="text" NAME="fluinp" SIZE=30 VALUE="" onChange="fluCon();"><BR><B>Then, click radio buttons for desired conversion:</FONT></TD></TR>
+<TR><TD ALIGN=CENTER><FONT COLOR="red" SIZE=1><B>From:</B></FONT></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Minims<BR><INPUT TYPE="radio" NAME="flui" VALUE="Minims" CHECKED onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Drams<BR><INPUT TYPE="radio" NAME="flui" VALUE="Drams" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Ounces<BR><INPUT TYPE="radio" NAME="flui" VALUE="Ounces" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Gills<BR><INPUT TYPE="radio" NAME="flui" VALUE="Gills" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Pints<BR><INPUT TYPE="radio" NAME="flui" VALUE="Pints" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Quarts<BR><INPUT TYPE="radio" NAME="flui" VALUE="Quarts" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Gallons<BR><INPUT TYPE="radio" NAME="flui" VALUE="Gallons" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Barrels*<BR><INPUT TYPE="radio" NAME="flui" VALUE="Barrels" onClick = ""></TD></TR>
+<TR><TD ALIGN=CENTER><FONT COLOR="red" SIZE=1><B>To:</B></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Minims<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Minims" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Drams<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Drams" CHECKED onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Ounces<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Ounces" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Gills<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Gills" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Pints<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Pints" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Quarts<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Quarts" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Gallons<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Gallons" onClick = ""></TD>
+<TD ALIGN=CENTER VALIGN=TOP><FONT SIZE=1>Barrels*<BR><INPUT TYPE="radio" NAME="fluo" VALUE="Barrels" onClick = ""></TD></TR>
+<TR><TD COLSPAN=9 ALIGN=CENTER VALIGN=TOP><FONT SIZE=1><INPUT TYPE="button" VALUE=" Click for Conversion " onClick="fluCon();"> <INPUT TYPE="reset" VALUE=" Reset Values "><BR><INPUT TYPE="text" NAME="fluout" SIZE=60 VALUE="" onClick="fluCon();"><BR>*42 Gallon Unrefined petroleum oil - no "standard" liquid barrel
+</FONT></TD></TR>
+</TABLE></FORM>
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+<CENTER>
+Enter a number in either field, then click outside the text box.
+<form>
+F: <input type="text" name="F" value="32"
+    onChange="C.value = 100/(212-32) * (this.value - 32 )"><br>
+C: <input type="text" name="C" value="0"
+    onChange="F.value = (212-32)/100 * this.value + 32 "><br>
+</form>
+
+<!--   This script is available from Java City 2000  --!>
+<!--       http://obsidianwt.com/javacity2000        --!>
+<!--    Copy this message when copying the script    --!>
+<!--    For copyright reasons and let others know    --!>
+<!-- Obsidian Web Technologies http://obsidianwt.com --!>
+
+
+ 
+
+
+
+		  
+
+
+
+
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+
+<center><H2>Not Enough Calculators for You?<p>
+Try 
+
+<a href="http://goodcalculators.com/" target="_blank"><img src="Good_calc.gif"></A>&nbsp&nbsp Or&nbsp&nbsp
+
+<a href="http://web.archive.org/web/20040211040356/www.martindalecenter.com/Calculators.html" target="_blank"><Img src="martindale1.gif"></A></center>
+
+
+
+
+
+ 
+
+
+
+<center><img src="wrench5.gif"><img src="wrench5.gif"><img src="wrench5.gif"></center>   
+
+
+
+<center>
+<TABLE WIDTH=800 BORDER=0 CELLPADDING=3 COLS=4><TR>
+<TD VALIGN=TOP WIDTH=150><CENTER><font size=4 face=tahoma><a href="Ketten.gif" target="_blank"><Img class="expando cat" border="0" src="Ketten.gif" width=200 height=139></A></font></CENTER></TD>
+
+<TD VALIGN=TOP WIDTH=475><CENTER><font size=4 face=tahoma>
+
+
+<center><a href="MC_repaircourse.htm"><font size=4>Back to M/C Repair Course</font></A>
+
+<div align="center">
+<a href="indexindex.htm"><h4>BACK TO INDEX</h4></a>
+<a href="index.htm"><H4>MOTORCYCLE HOME PAGE</h4></a></div>
+
+<center>
+<form name="form">
+<select name="site" size=1>
+<option value="">go to....
+<option value="http://www.dansmc.com/index.htm">Home
+<option value="http://www.dansmc.com/indexindex.htm">Index
+
+<option value="http://www.dansmc.com/Bible1.htm">Ultimate Shop Manual
+<option value="http://www.dansmc.com/shopmanual2.htm">Online Shop Manuals
+<option value="http://www.dansmc.com/MC_repaircourse.htm">MC Repair Course
+<option value="http://www.dansmc.com/donation.htm">DONATION
+<option value="http://www.dansmc.com/emailtome.htm">E-Mail To ME
+
+
+
+</select>
+<input type=button value="go!" onClick="javascript:formHandler(this)">
+</form>
+</center>
+
+
+</TD>
+<TD VALIGN=TOP WIDTH=150><CENTER><font size=4 face=tahoma>
+<Img src="Ketten2.gif" width=200 height=139></font></CENTER></TD>
+</TR></TABLE>
+</center>
+
+
+
+<center>
+<font size=3 color=black><B>Did this page help you? Would you like to help us? If so </font><a href="donation.htm"><font size=3 color=black>Click HERE</B></A></font></a>
+
+<BR><BR><font size=3><B>Copyright &copy; 1999-2016 dansmc.com. All rights reserved.</B></font>
+
+</center>
+
+</div>
+
+
+</body>
+</HTML>
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
