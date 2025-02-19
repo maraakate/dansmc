@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0108)http://web.archive.org/web/20030819073319/john.rushworth.com/Motorcycle_Co_UK_archive/javascript/piston.html -->
+<HTML><HEAD><TITLE>Piston Travel vs Crank Rotation</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<SCRIPT language=JAVASCRIPT>
+<!--
+/*************************************************************
+* Piston Travel vs Crank Rotation script ver 1.0 by Kevin Earls
+* 1999/01/07
+* Copyright (c) 1999. Kevin Earls. All Rights Reserved.
+* You can freely copy, use, modify this script,
+* if the credit is given in the source.
+* If you would like to get information for this script,
+* please email keystroke@bigfoot.com
+*/
+
+
+function doit()
+{
+    if (document.FORM.STROKE.value == null || document.FORM.RODLENGTH.value == null) {
+	alert('Please fill in the Stroke and Rod Length\n');
+	return true;
+    }
+  with (Math) {
+
+// STROKE
+    var ST = parseFloat(document.FORM.STROKE.value);
+// ROD LENGTH
+    var RL = parseFloat(document.FORM.RODLENGTH.value);
+// INC
+    var INC = parseFloat(document.FORM.INC.value);
+// CT = STROKE/2
+    var CT = parseFloat(document.FORM.STROKE.value) / 2;
+	parent.OUTPUT.document.open();
+    parent.OUTPUT.document.writeln('<BODY BACKGROUND="images/fly.jpg"><CENTER>');
+    parent.OUTPUT.document.writeln('<TABLE BORDER="3" WIDTH="75%" BGCOLOR="#C0C0C0">');
+    parent.OUTPUT.document.writeln('<TR BGCOLOR="#A0A0A0">');
+    parent.OUTPUT.document.writeln('<TH> Crank � </TH><TH> Piston Travel </TH>');
+    parent.OUTPUT.document.writeln('<TH> Crank � </TH><TH> Piston Travel </TH>');
+    parent.OUTPUT.document.writeln('<TH> Crank � </TH><TH> Piston Travel </TH></TR>');
+    for (DEG=0;DEG<=120;DEG+=INC) {
+	var z = CT + RL - (CT * cos(DEG*2*PI/360) +
+	    (RL*cos(asin((CT*sin(DEG*2*PI/360))/RL)))); 
+	z = round(z*1000)/1000;
+	parent.OUTPUT.document.writeln('<TR><TD ALIGN="RIGHT"> ' +
+		DEG + '�</TD><TD BGCOLOR="#A0A0A0">' + z + "</TD>");
+	DEG += 120;
+	var z = CT + RL - (CT * cos(DEG*2*PI/360) +
+	    (RL*cos(asin((CT*sin(DEG*2*PI/360))/RL)))); 
+	z = round(z*1000)/1000;
+	parent.OUTPUT.document.writeln('<TD ALIGN="RIGHT"> ' +
+		DEG + '�</TD><TD BGCOLOR="#A0A0A0">' + z + "</TD>");
+	DEG += 120;
+	var z = CT + RL - (CT * cos(DEG*2*PI/360) +
+	    (RL*cos(asin((CT*sin(DEG*2*PI/360))/RL)))); 
+	z = round(z*1000)/1000;
+	parent.OUTPUT.document.writeln('<TD ALIGN="RIGHT"> ' +
+		DEG + '�</TD><TD BGCOLOR="#A0A0A0">' + z + "</TD>");
+	DEG -= 240;
+    }
+    parent.OUTPUT.document.writeln('</TABLE></CENTER>');
+    parent.OUTPUT.document.close();
+
+    return true;
+  }
+}
+//-->
+</SCRIPT>
+
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.9">
+
+<link rel="stylesheet" href="screen.css" type="text/css" media="Screen" />
+
+</HEAD>
+<BODY background="background1.jpg">
+
+<div align=left style="margin-left: 5%;"> 
+<div align=left style="margin-right: 5%;">
+
+<CENTER>
+<FORM name=FORM target=OUTPUT><br>
+<TABLE width="70%" bgColor=#c0c0c0 border=4>
+  <TBODY>
+  <TR>
+    <TD>Stroke </TD>
+    <TD><INPUT size=8 value=47.80 name=STROKE> </TD>
+    <TD>Rod Length </TD>
+    <TD><INPUT size=8 value=95.60 name=RODLENGTH> </TD>
+    <TD>Increment Degrees by </TD>
+    <TD><INPUT size=8 value=5 name=INC> </TD></TR>
+  <TR>
+    <TH colSpan=6><INPUT onclick=doit(); type=button value=CALCULATE> 
+  </TH></TR></TBODY></TABLE></FORM></CENTER>
+<SCRIPT language=Javascript>
+<!--
+
+// FILE ARCHIVED ON 20030819073319 AND RETRIEVED FROM THE
+// INTERNET ARCHIVE ON 20050731122529.
+// JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+// ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+// SECTION 108(a)(3)).
+
+   var sWayBackCGI = "http://web.archive.org/web/20030819073319/";
+
+   function xLateUrl(aCollection, sProp) {
+      var i = 0;
+      for(i = 0; i < aCollection.length; i++)
+         if (aCollection[i][sProp].indexOf("mailto:") == -1 &&
+             aCollection[i][sProp].indexOf("javascript:") == -1)
+            aCollection[i][sProp] = sWayBackCGI + aCollection[i][sProp];
+   }
+
+   if (document.links)  xLateUrl(document.links, "href");
+   if (document.images) xLateUrl(document.images, "src");
+   if (document.embeds) xLateUrl(document.embeds, "src");
+
+   if (document.body && document.body.background)
+      document.body.background = sWayBackCGI + document.body.background;
+
+//-->
+
+</SCRIPT>
+
+</div>
+
+</BODY></HTML>
