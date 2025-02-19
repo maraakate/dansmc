@@ -1,0 +1,817 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<TITLE>Dan's Motorcycle "One Paratrooper's View."</TITLE>
+<META Name="description" content="One Paratroopers Opinion.">
+<META Name="keywords" Content="fight, iraq, USA, why, reasons, opinion...">
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.9">
+
+<link rel="stylesheet" href="screen.css" type="text/css" media="Screen" />
+
+<style style="text/css">
+
+.dcountstyle{ /*Example CSS to style count up output*/
+font: bold 16px Arial;
+padding: 3px;
+}
+
+.dcountstyle sup{ /*Example CSS to style count up output*/
+font-size: 90%
+}
+
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+* Dynamic CountUp script- � Dynamic Drive (http://www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+
+function dcountup(startingdate, baseunit){
+	this.currentTime=new Date()
+	this.startingdate=new Date(startingdate)
+	this.timesup=false
+	this.baseunit=baseunit
+	this.start()
+}
+
+dcountup.prototype.oncountup=function(){} //default action for "oncountup"
+
+dcountup.prototype.start=function(){
+	var thisobj=this
+	this.currentTime.setSeconds(this.currentTime.getSeconds()+1)
+	var timediff=(this.currentTime-this.startingdate)/1000 //difference btw target date and current date, in seconds
+	var oneMinute=60 //minute unit in seconds
+	var oneHour=60*60 //hour unit in seconds
+	var oneDay=60*60*24 //day unit in seconds
+	var dayfield=Math.floor(timediff/oneDay)
+	var hourfield=Math.floor((timediff-dayfield*oneDay)/oneHour)
+	var minutefield=Math.floor((timediff-dayfield*oneDay-hourfield*oneHour)/oneMinute)
+	var secondfield=Math.floor((timediff-dayfield*oneDay-hourfield*oneHour-minutefield*oneMinute))
+	if (this.baseunit=="hours"){ //if base unit is hours, set "hourfield" to be topmost level
+		hourfield=dayfield*24+hourfield
+		dayfield="n/a"
+	}
+	else if (this.baseunit=="minutes"){ //if base unit is minutes, set "minutefield" to be topmost level
+		minutefield=dayfield*24*60+hourfield*60+minutefield
+		dayfield=hourfield="n/a"
+	}
+	else if (this.baseunit=="seconds"){ //if base unit is seconds, set "secondfield" to be topmost level
+		var secondfield=timediff
+		dayfield=hourfield=minutefield="n/a"
+	}
+	var result={days: dayfield, hours:hourfield, minutes:minutefield, seconds:secondfield}
+	this.oncountup(result)
+	setTimeout(function(){thisobj.start()}, 1000) //update results every second
+}
+
+</script>
+
+<script type="text/javascript">
+
+/***********************************************
+* Image w/ description tooltip- By Dynamic Web Coding (www.dyn-web.com)
+* Copyright 2002-2007 by Sharon Paine
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+/* IMPORTANT: Put script after tooltip div or 
+	 put tooltip div just before </BODY>. */
+
+var dom = (document.getElementById) ? true : false;
+var ns5 = (!document.all && dom || window.opera) ? true: false;
+var ie5 = ((navigator.userAgent.indexOf("MSIE")>-1) && dom) ? true : false;
+var ie4 = (document.all && !dom) ? true : false;
+var nodyn = (!ns5 && !ie4 && !ie5 && !dom) ? true : false;
+
+var origWidth, origHeight;
+
+// avoid error of passing event object in older browsers
+if (nodyn) { event = "nope" }
+
+///////////////////////  CUSTOMIZE HERE   ////////////////////
+// settings for tooltip 
+// Do you want tip to move when mouse moves over link?
+var tipFollowMouse= true;	
+// Be sure to set tipWidth wide enough for widest image
+var tipWidth= 160;
+var offX= 20;	// how far from mouse to show tip
+var offY= 12; 
+var tipFontFamily= "Verdana, arial, helvetica, sans-serif";
+var tipFontSize= "8pt";
+// set default text color and background color for tooltip here
+// individual tooltips can have their own (set in messages arrays)
+// but don't have to
+var tipFontColor= "#000000";
+var tipBgColor= "#DDECFF"; 
+var tipBorderColor= "#000080";
+var tipBorderWidth= 3;
+var tipBorderStyle= "ridge";
+var tipPadding= 4;
+
+// tooltip content goes here (image, description, optional bgColor, optional textcolor)
+var messages = new Array();
+// multi-dimensional arrays containing: 
+// image and text for tooltip
+// optional: bgColor and color to be sent to tooltip
+messages[0] = new Array('','Taliban',"#DDECFF");
+messages[1] = new Array('','Afghanistan',"#DDECFF");
+messages[2] = new Array('test.gif','Afghanistan',#DDECFF);
+
+////////////////////  END OF CUSTOMIZATION AREA  ///////////////////
+
+// preload images that are to appear in tooltip
+// from arrays above
+if (document.images) {
+	var theImgs = new Array();
+	for (var i=0; i<messages.length; i++) {
+  	theImgs[i] = new Image();
+		theImgs[i].src = messages[i][0];
+  }
+}
+
+// to layout image and text, 2-row table, image centered in top cell
+// these go in var tip in doTooltip function
+// startStr goes before image, midStr goes between image and text
+var startStr = '<table width="' + tipWidth + '"><tr><td align="center" width="100%"><img src="http://www.dansmc.com/';var&#32;midStr&#32;=&#32;'" border="0"></td></tr><tr><td valign="top">';
+var endStr = '</td></tr></table>';
+
+////////////////////////////////////////////////////////////
+//  initTip	- initialization for tooltip.
+//		Global variables for tooltip. 
+//		Set styles
+//		Set up mousemove capture if tipFollowMouse set true.
+////////////////////////////////////////////////////////////
+var tooltip, tipcss;
+function initTip() {
+	if (nodyn) return;
+	tooltip = (ie4)? document.all['tipDiv']: (ie5||ns5)? document.getElementById('tipDiv'): null;
+	tipcss = tooltip.style;
+	if (ie4||ie5||ns5) {	// ns4 would lose all this on rewrites
+		tipcss.width = tipWidth+"px";
+		tipcss.fontFamily = tipFontFamily;
+		tipcss.fontSize = tipFontSize;
+		tipcss.color = tipFontColor;
+		tipcss.backgroundColor = tipBgColor;
+		tipcss.borderColor = tipBorderColor;
+		tipcss.borderWidth = tipBorderWidth+"px";
+		tipcss.padding = tipPadding+"px";
+		tipcss.borderStyle = tipBorderStyle;
+	}
+	if (tooltip&&tipFollowMouse) {
+		document.onmousemove = trackMouse;
+	}
+}
+
+window.onload = initTip;
+
+/////////////////////////////////////////////////
+//  doTooltip function
+//			Assembles content for tooltip and writes 
+//			it to tipDiv
+/////////////////////////////////////////////////
+var t1,t2;	// for setTimeouts
+var tipOn = false;	// check if over tooltip link
+function doTooltip(evt,num) {
+	if (!tooltip) return;
+	if (t1) clearTimeout(t1);	if (t2) clearTimeout(t2);
+	tipOn = true;
+	// set colors if included in messages array
+	if (messages[num][2])	var curBgColor = messages[num][2];
+	else curBgColor = tipBgColor;
+	if (messages[num][3])	var curFontColor = messages[num][3];
+	else curFontColor = tipFontColor;
+	if (ie4||ie5||ns5) {
+		var tip = startStr + messages[num][0] + midStr + '<span style="font-family:' + tipFontFamily + '; font-size:' + tipFontSize + '; color:' + curFontColor + ';">' + messages[num][1] + '</span>' + endStr;
+		tipcss.backgroundColor = curBgColor;
+	 	tooltip.innerHTML = tip;
+	}
+	if (!tipFollowMouse) positionTip(evt);
+	else t1=setTimeout("tipcss.visibility='visible'",100);
+}
+
+var mouseX, mouseY;
+function trackMouse(evt) {
+	standardbody=(document.compatMode=="CSS1Compat")? document.documentElement : document.body //create reference to common "body" across doctypes
+	mouseX = (ns5)? evt.pageX: window.event.clientX + standardbody.scrollLeft;
+	mouseY = (ns5)? evt.pageY: window.event.clientY + standardbody.scrollTop;
+	if (tipOn) positionTip(evt);
+}
+
+/////////////////////////////////////////////////////////////
+//  positionTip function
+//		If tipFollowMouse set false, so trackMouse function
+//		not being used, get position of mouseover event.
+//		Calculations use mouseover event position, 
+//		offset amounts and tooltip width to position
+//		tooltip within window.
+/////////////////////////////////////////////////////////////
+function positionTip(evt) {
+	if (!tipFollowMouse) {
+		standardbody=(document.compatMode=="CSS1Compat")? document.documentElement : document.body
+		mouseX = (ns5)? evt.pageX: window.event.clientX + standardbody.scrollLeft;
+		mouseY = (ns5)? evt.pageY: window.event.clientY + standardbody.scrollTop;
+	}
+	// tooltip width and height
+	var tpWd = (ie4||ie5)? tooltip.clientWidth: tooltip.offsetWidth;
+	var tpHt = (ie4||ie5)? tooltip.clientHeight: tooltip.offsetHeight;
+	// document area in view (subtract scrollbar width for ns)
+	var winWd = (ns5)? window.innerWidth-20+window.pageXOffset: standardbody.clientWidth+standardbody.scrollLeft;
+	var winHt = (ns5)? window.innerHeight-20+window.pageYOffset: standardbody.clientHeight+standardbody.scrollTop;
+	// check mouse position against tip and window dimensions
+	// and position the tooltip 
+	if ((mouseX+offX+tpWd)>winWd) 
+		tipcss.left = mouseX-(tpWd+offX)+"px";
+	else tipcss.left = mouseX+offX+"px";
+	if ((mouseY+offY+tpHt)>winHt) 
+		tipcss.top = winHt-(tpHt+offY)+"px";
+	else tipcss.top = mouseY+offY+"px";
+	if (!tipFollowMouse) t1=setTimeout("tipcss.visibility='visible'",100);
+}
+
+function hideTip() {
+	if (!tooltip) return;
+	t2=setTimeout("tipcss.visibility='hidden'",100);
+	tipOn = false;
+}
+
+document.write('<div id="tipDiv" style="position:absolute; visibility:hidden; z-index:100"></div>')
+
+</script>
+
+
+</HEAD>
+<BODY background="background1.jpg" bgproperties="fixed">
+
+<div align=left style="margin-left: 5%;"> 
+<div align=left style="margin-right: 5%;">
+
+<div align="center"><h1><img src="BLOB1.gif"><br><a href="airborne_page/airborne1.htm"><img src="jumpwings1.gif" border=0 width="100" height="72"></a><BR>One Paratroopers Opinion</h1></div><HR>
+<BR>
+
+<center>
+<div id="cpcontainer">&nbsp;</div>
+
+<script type="text/javascript">
+
+//SYNTAX: myvariable=new dcountup(past_date_and_time_string, "baseunit")
+var princewedding=new dcountup("April 15 ,2013", "days")
+
+princewedding.oncountup=function(result){
+	//result is an object containing the current count up date/time, updated every second
+	//Available properties: result["days"], result["hours"], result["minutes"], and result["seconds"]
+	var mycountainer=document.getElementById("cpcontainer")
+	mycountainer.innerHTML="<font size=5><B> Under Republican leadership<BR> the Continental USA has had no terrorist attacks for 2689 days.<BR><BR> It's now your watch Democrats. You made it about 336 days. Not so good. <BR>Try again. <BR><BR>Here we go again. Total FAILURE after 127 days. Do you see a pattern here?<BR>Try again.<BR><BR>Now we have Boston. A bit better-1080 days.</B></font><BR><br /><span class='dcountstyle'>"+result['days']+" <sup>days</sup> "+result['hours']+" <sup>hours</sup> "+result['minutes']+" <sup>minutes</sup> "+result['seconds']+" <sup>seconds</sup></span>"
+}
+
+</script>
+</center>
+<BR><BR>
+<HR>
+<HR>
+
+
+
+<BR><BR>
+<P><font size=4>My daughter has a Blog and told me I should get one. In fact, she said I already had one. Well, I don't like the name Blog so I changed it to Blob which rhymes with slob and as I am somewhat of a slob that sounded just right!
+
+If you want to read my Blobs that came before 2009, you can click, <a href="why.htm">HERE</a>
+<P>Blobs for 2009 are<a href="why5.htm"> HERE.</A>
+<P>If you want to read my most recent Blob click <a href="why6.htm#1">HERE!</A>
+
+<P>Someone asked through the comments page for my Testimony so <a href="testimony.htm">HERE</A> it is!
+
+<BR><BR><BR>
+
+
+
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>January 6, 2010</H2></center><BR></center>
+<BR>
+<P>Why do the words "Redistributive Change" always come from people who vacation in Hawaii or the Bahamas. It never seems to come from people like me, who can't afford to go to any of those places. I drive a car made in 1994, have a $5000.00 deductible on my health insurance and I don't have a silk suit. The only redistributive change I get is a higher tax bill!
+
+<P>In honor of this auspicious occasion I took the time to cut my Health Care insurance to just Hospital Care. Of course I still have my beloved $5000.00 deductible. That cut the bill in half. It's also nice to know that I still didn't get in enough business this year to pay for it. Way to go Economic Stimulus Bill! One of my customers told me yesterday that he wanted to pick up his mount but he could not. In terms of <a href=http://turbotax.intuit.com/personal-taxes/online/military-edition.jsp>military taxes</a>, instead of getting money back, he had to pay extra. 
+
+
+<P>The Health care bill presently being pushed will do nothing to address the very real problems we have with the present system. Yet the Democrats are pushing as hard as they can. Why? More power and control (Money) for the government? AARP is all for it even though it cuts Billions from Medicare. Why? Could it be they make a lot of money from their different insurance programs?
+
+<P>Same thing with the Cap and Trade. It does nothing to really cut carbon emissions. I don't think we humans are powerful enough to effect the weather on a global scale. Yet if I did I could not deny the fact that Cap and Trade is just a plain stupid thing to do. The people who push this Global Warming thing produced the carbon emissions of a small country simply to travel to Copenhagen to talk about it. Specifically, more Co2 than was produced by Malawi, Afghanistan or Sierra Leone over the same period of time. Why not a video conference over the Internet? Just about every laptop in the world has a video camera on it so it would be easy. I mean really, if it is so important why not save the carbon?
+
+<P>Follow the money, follow the money. Bush had Halliburton, Obama has GE. Humm... follow the money!
+
+<BR><BR><BR>
+<center><font size=6><B>I found some more U-Tube stuff!</B></font></center>
+<BR><BR>
+
+<Center>
+<TABLE WIDTH=600 BORDER=0 CELLPADDING=3 COLS=4><TR>
+<TD VALIGN=TOP WIDTH=266><CENTER><font size=4 face=tahoma>
+<object width="300" height="242"><param name="movie" value="http://www.youtube.com/v/kPMf6kW_1Nw&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/kPMf6kW_1Nw&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="242"></embed></object><WIDTH=200 HEIGHT=184 ALT="Click the Picture for the Full Size."></a><BR><BR>
+Please explain how this is not a Lie!</font></CENTER></TD>
+
+<TD VALIGN=TOP WIDTH=266><CENTER><font size=4 face=tahoma>
+<object width="300" height="242"><param name="movie" value="http://www.youtube.com/v/lxUud3yOsSk&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lxUud3yOsSk&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="242"></embed></object> <WIDTH=200 HEIGHT=156 ALT="Click the Picture for the Full Size."></a><BR><BR>
+So it s OK to lie when you are campaigning for votes?</font></CENTER></TD>
+</TR><TR>
+</table>
+</Center>
+
+
+
+
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>January 24, 2010</H2></center><BR></center>
+
+<P>Well, the people have spoken and Ted Kennedy's seat has finally been returned to the people. I'll bet Mary Jo is resting a bit easier now.
+
+<P>President Obama is now one year into his presidency and while I'm still hoping, I sure don't see much change. Let me itemize.
+<OL>
+<LI>We are out of Iraq. Oops, I guess not.
+<LI>Getmo is closed, Oops, I guess not
+<LI>We changed the Bush economic policies, Stimulus money, TARP, more Stimulus money (remember? $18.00 a paycheck extra) bail out the car companies, bail out the banks, bail out GM. That big750 billion dollar stimulus bill. Bernanke is still with us. 10.2 unemployment. Can you tell where Bush policies ended and Obama policies start? I sure can't.  I guess if we just did it one more time it might work, don't you think? Oops, I guess not.
+<LI>We have brown nosed China, Russia, Iran and just about everyone else and that humble attitude as gained us so many things. China put the brakes on North Korea's nukes, Iran has slowed down research on their nukes, and Russia has been helpful in so many ways. Oops, I guess not.
+<LI>No more special deals to special interest groups like drug companies. (see last years blobs). Oops, I guess not.
+<LI>All Bills will be posted on the internet in finished form for 72 hours for all to see before there is a vote. Oops, I guess not. But it is OK to pass secret bills in the middle of the night! 
+<LI>Health Care Bill will be on C-Span (see U-Tube above). Oops, I guess not.
+<LI>This will be the most open administration in history. Oops, I guess not.
+</OL>
+<P>Everyone is giving President Obama grades on his first year. As I remember he gave himself a B+. Not only that but he got a Nobel Peace prize. Good thing he got it before pumping up troops in Afghanistan! I suppose I could give him a grade but apart from tanking the economy with over spending he really has not done <B>ANYTHING</B> different from President Bush!
+<P><center><h2><B>Just like I said one year ago in the first paragraph of my 2009 blob.<BR> Obama didn't bring change, he's the one who changed. <BR>Am I psychic or what!</B></h2></center>
+
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<BR><BR>
+<center><H2>February 12, 2010</H2></center><BR></center>
+<P>Well, I just turned 60. Back in 1962 I was working as a paperboy in Downey, California. Because of a poor economy, the newspaper I was working for combined with a rival newspaper. To save my route and keep my job I had to sign up as many of my old customers as I could to the new newspaper. As it turned out, the new newspaper was running a contest. The top 20 or so boys that got the most new sign ups would get to go to the Seattle Worlds Fair. I wasn't trying to win. In fact, I never even thought about it. I was just trying to save my job. However, SURPRISE! I won and it was a very nice trip for a 12 year old. 
+
+<P>At the Worlds Fair they had a telephone. Not just an ordinary phone. Oh no, this one had something that was just amazing. It has a little tiny television screen and you could see the caller at the other end of the line. WOW! That was neat. There was a long line to get to use it and it only showed a caller on one other phone about 50 feet away. I went back several times. They felt everyone would have a phone like this within 10 years. Twenty years on the outside. As you know it didn't happen, at least not till now!
+
+<P>The other day I put <a href="http://www.skype.com/download/skype/windows/?c=204">Skype</A> on my new little netbook ($300.00, two year warranty, from Costco). I put it on my daughters netbook too. It's Free and most times the picture and sound quality are great. We finally got there, only 38 years late.
+
+<p>We had such hopes in those days. We were headed for the Moon and beyond. Then came Viet Nam. Thank you President Lyndon Johnson. Hummm, another Progressive Democrat. The "ME" generation came of age and took over. Now look at us. Everyone is entitled. Everyone has lots and lots of new "Constitutional Rights" that are not in the Constitution. We can't afford all the "Rights" we have given everybody. We are flat broke both in money and ideas.
+
+<P>Proverbs 29:18 tells us "Where there is no <a href="vision.gif" target="_blank">vision</a>, the people <a href="perish.gif" target="_blank">perish</a>:" Yeah, it seems like we have no view of something great in the future. Back in '62 we were making the great push for the stars. All the Sci-Fi movies had us on Mars by the 70s. It all died because instead of looking up we looked down. Instead of fighting alien monsters on the deserts of Mars we are fighting poor deluded fools who try to blow off their own family jewels. To top it off, we only won that one because the dumb fools don't know how to make a bomb right. Understand, I'm meaning the dumb fool terrorists and not the current batch of dumb fools we voted in to protect us. I realize that it has been a bit hard to tell the difference lately.
+
+<P>Before you say "President Obama is right to cut going to the Moon" think of this. They have found <a href="http://www.space.com/scienceastronomy/091113-lcross-moon-crash-water-discovery.html" target="_blank">water</A> on the moon and I'll bet there's a lot more good stuff up there and on Mars and beyond. If you really are worried about overpopulation, global warming, want solar power, all the stuff progressives seem to worry about, the answers are in the sky. Not in a free government handout. We have our faces in our food bowls instead of reaching for the stars.
+
+<P>Don't worry my friends. This will be the year we turn all that around. The old way. The ClintonBushObama way of big government. The nobody work, we get it all for free, borrow the money to pay for it way. That way is going to come to an end. Come November things are going to change. Like Burt said in Tremors 2, "It's gonna be BIG".
+
+<P>I think I will make this my battle cry for 2010. "We should have been on Mars by now!"<BR><BR>
+<HR>
+<center><H1><B>More YouTube.</H1><H2>President Obama in his own words.<BR>You can keep your Heath Plan and Doctor... well maybe not... you know... things change!</B></H2> <BR>
+<object width="480" height="295"><param name="movie" value="http://www.youtube.com/v/1EqUXXVqcmQ&hl=en_US&fs=1&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/1EqUXXVqcmQ&hl=en_US&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="295"></embed></object>
+</center>
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<BR><BR>
+<center><H2>February 27, 2010</H2></center><BR></center>
+<P>I watched a lot of the Health Care Summit. Well, as much as I could stomach. Lets see, it was so balanced. 1/3 President Obama talking, 1/3 Democrats talking and 1/3 Republicans talking. It was so nice to see the Dear One taking so much time to explain why only his way would work. NOT!
+
+<P>In honor of this auspicious occasion I took the time to cut my Health Care insurance to just Hospital Care. Of course I still have my beloved $5000.00 deductible. That cut the bill in half. It's also nice to know that I still didn't get in enough business this year to pay for it. Way to go Economic Stimulus Bill! One of my customers told me yesterday that he wanted to pick up his mount but he could not. Instead of getting money back on his taxes, he had to pay extra.
+
+<P>Nothing that is being discussed comes close to what the real problem is. It's really simple to see. The next time you go to your favorite Doctor count how many caregivers (Doctors, Nurses) and compare that to the number of non-caregivers (book keepers, receptionists, ETC). If you count them all you will find that there are two to three times more non-caregivers then there are caregivers. 
+
+<P>The Idea that I don't care what it costs because the insurance will take care of it is killing us in the cost department. When someone else pays for it we don't care what it costs. Those days are rapidly coming to an end. We need a plan where by we are active in paying for our own specific health care needs. We also need Tort Reform. Doctors are human. They do make mistakes but I would rather chance a mistake then have no Doctor at all. 
+
+<P>Folks we are at the point where we have to choose. We are going broke. The charge card is maxed out. So what does the Democratic Congress and our Dear President want to do? Tax us for care we will not get till 2014 and add more people to the Health Care Rolls all the while yelling this will save money.
+
+<P>We need to make small changes, one thing at a time and then see if the changes work. We need to work together and compromise. The Health Care Summit sure didn't look like a compromise. I was once a member of a union. At the union meeting the union officers would spend as much time as necessary to talk you into agreeing with what they had already decided to do. The words President Obama used at the Health Care Summit sounded just like those union officials.
+
+<P>Perhaps Congress needs to remember the words from the Doctors oath <a href="http://en.wikipedia.org/wiki/Primum_non_nocere" target="_blank">"Primum non nocere."</A> (First do no harm.)
+<BR><BR><BR>
+
+<center><Img src="miss_me_yet.gif"></center>
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<BR><BR>
+<center><H2>March 28, 2010</H2></center><BR></center>
+<P>Social Justice. Economic Justice. I want everything that's coming to me! That is what all the "Progressives" want. Well, I sure don't. I know full well what I deserve and I don't want any part of that. That is the part of the equation that progressives do not seem to understand. That part about <a href="http://www.merriam-webster.com/dictionary/justice" target="_blank"><B>"Justice".</B></a> 
+<P>Justice by definition means:
+<OL>
+<LI>The quality of being just, impartial, or fair. 
+<LI>The principle or ideal of just dealing or right action.
+<LI>Conformity to this principle or ideal : righteousness. 
+<LI>The quality of conforming to law.
+<LI>Conformity to truth, fact, or reason. 
+</OL>
+<P>This week I have read of several progressive commentators who say the Bible <B>DEMANDS</B> Social and Economic Justice. I think they are right in a way. God <B>IS</B> just and if we choose to not believe in Jesus Christ we will receive justice. That is not a pleasant thought. 
+
+<P>Romans 3:10-12 Tells us <B>"As it is written, There is none righteous, no, not one: There is none that understandeth, there is none that seeketh after God. They are all gone out of the way, they are together become unprofitable; there is none that doeth good, no, not one."</B>
+
+<P>1 John 1:8-10 points out <B>"If we say that we have no sin, we deceive ourselves, and the truth is not in us. If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness. If we say that we have not sinned, we make him a liar, and his word is not in us."</B>
+
+
+
+<P>That is why I'm very glad my sins are covered by the sacrifice of Jesus. He died in my place so I would not have to receive true justice for the things I have done. 
+
+<P>Let's take this thought of justice a bit further. Is it just that you take my money away from me to pay for the health care for someone else who decided to send their money on beer instead of health care insurance? Don't they have the freedom to do just that? Isn't this a free country? I guess it's not any more.
+
+<P>Another so called Minister said that Economic and Social Justice was the Gospel from the Bible. <B>NOT SO!</B> The true Gospel tells us about Jesus. Strong's Bible Dictionary gives the definition of Gospel as:
+<P> 
+ <B>"1) a reward for good tidings 2) good tidings 2a) the glad tidings of the kingdom of God soon to be set up, and subsequently also of Jesus the Messiah, the founder of this kingdom. After the death of Christ, the term comprises also the preaching of (concerning) Jesus Christ as having suffered death on the cross to procure eternal salvation for the men in the kingdom of God, but as restored to life and exalted to the right hand of God in heaven, thence to return in majesty to consummate the kingdom of God 2b) the glad tidings of salvation through Christ 2c) the proclamation of the grace of God manifest and pledged in Christ 2d) the gospel 2e) as the messianic rank of Jesus was proved by his words, his deeds, and his death, the narrative of the sayings, deeds, and death of Jesus Christ came to be called the gospel or glad tidings."</B>
+
+<P>But you don't have to take Strong"s word for it. Simply read the first four books of the New Testament, Matthew, Mark, Luke and John.
+
+<P>Fortunately, if we trust in Jesus Christ for our salvation we will be saved. We don't have to worry about social justice, economic justice or any other kind of justice separating us from God. As Ann Coulter has said. <B>"It's the best deal in the Universe!"</B>
+
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<center><H2>April 10, 2010</H2></center><BR></center>
+
+<center><B>Well, I haven't been flamed in a while so it was refreshing to get one! Here is what she sent.</B></center>
+
+<HR width="50%">
+<P>"I found your site while looking for information on my bike. It's a shame my 
+boyfriend is off fighting for your freedom of speech while you use it to 
+badmouth our president. Your insults to our leader serve to make our 
+enemies bolder and put my guy at risk. You should be ashamed of yourself. 
+You should consider moving to another country if you aren't willing to 
+support this one. You make me sick with your words of treason.<BR><BR>
+
+ Tammy"
+<HR width="50%">
+<center><B>Here is my answer.</B></center><HR width="50%">
+<P>"Hi Tammy,<BR><BR>
+
+Thank you for your comments. However, you never said where I was wrong. Your
+intolerance is astounding. Both Hilary Clinton AND House Speaker Nancy
+Pelosi disagree with you. They both feel that criticizing a sitting
+President is Patriotic. See the following YouTube links:<BR>
+<a href="http://www.youtube.com/watch?v=NJxmpTMGhU0" target="_blank">http://www.youtube.com/watch?v=NJxmpTMGhU0</A><BR>
+<a href="http://www.youtube.com/watch?v=t3vauUPUAa0" target="_blank">http://www.youtube.com/watch?v=t3vauUPUAa0</A>
+
+<P>President Obama's policies are bankrupting the country. You should remember 
+that the winds of change are
+coming to the ballot box next November. The good news is that when the
+people I favor are in power, I will NEVER call you a traitor just because
+you disagree with me.<BR><BR>
+
+Thank you again for your comments,<BR>
+Dan"
+<HR width="50%">
+<P>So I am not supporting our troops and I am committing treason. Interesting. I would submit to you that the only places where my words would be considered treason would be North Korea or Iran or Cuba or the old Soviet Union back in the 1950s or almost any run-of-the-mill dictatorship. AND guess what? Hilary and Nancy agree with me too! Look at the YouTube video. We actually agree. Will wonders never cease.
+
+<P>Another wonder is how intolerant the progressive left is to anyone who disagrees with them. They seem to think that they can criticize President Bush and that is patriotic but for anyone to criticize President Obama is treason. That kind of attitude is very wrong. We the people need to remember that when we take back the Senate and the House in November. I hope we can be more tolerant of other opinions then the progressives are.
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>May 9, 2010</H2></center><BR></center>
+
+<P>Well, the verdict is in and the Democrats have totally FAILED to protect us. They try to put a good spin on it and praise the police and vigilant citizens for stopping the attack but the truth is the bomb just didn't go off. Other then that, the attack was a complete success! That is twice that the terrorists own stupidity and lack of attention to detail, has saved us. I am afraid that third time will be the charm. I'm glad I live in the North West. 
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<BR>
+<center><H2>May 18, 2010</H2></center><BR></center>
+
+
+Sorry Tammy, It is truly amazing how stupid and foolish and ignorant our current are leaders are. Here is testimony from a recent goverment hearing. The top lawyer for the USA Eric Holder makes statements about a law he HAS NOT EVEN READ. Don't believe me? I offer the following facts from Congressman Ted Poe (R-Texas) when he asked the Attorney General about the new Arizona immigration law.
+
+<HR width="50%">
+
+<P>"REP. TED POE: So Arizona, since the federal government fails to secure the border, desperately passed laws to protect its own people. The law is supported by 70 percent of the people in Arizona, 60 percent of all Americans and 50 percent of all Hispanics, according to The Wall Street Journal/NBC poll done just this week. And I understand that you may file a lawsuit against the law. It seems to me the administration ought to be enforcing border security and immigration laws and not challenge them and that the administration is on the wrong side of the American people. Have you read the Arizona law? 
+
+<P>ATTORNEY GENERAL ERIC HOLDER: I have not had a chance to -- I've glanced at it. I have not read it. 
+
+<P>POE: It's 10 pages. It's a lot shorter than the health care bill, which was 2,000 pages long. I'll give you my copy of it, if you would like to -- to have a copy. 
+
+<P>Even though you haven't read the law, do you have an opinion as to whether it's constitutional 
+
+<P>HOLDER: I have not really -- I have not been briefed yet. We, as I said, have had underway a review of the law. I have not been briefed by the people who have been responsible -- who are responsible for that review. 
+
+<P>POE: Are you going to read the law? 
+
+<P>HOLDER: I'm sure I will read the law in anticipation of that briefing. I know that they will put that in front of me, and I'll spend a good evening reading that law. 
+
+<P>POE: Well, I've gone through it. And it's pretty simple. It takes the federal law and makes it -- enacts it in a state statute, although makes it much more refined in that it actually says in one of the sections that no state or subdivision may consider race, color, national origin in implementing the requirements of any subsection of this law. 
+
+<P>It seems to outlaw racial profiling in the law. I know there's been a lot of media hype about the -- the legislation. Do you see a difference in the constitutionality of a statute and the constitutionality of the application of that statute? Do you see there's a difference in those two? 
+
+<P>HOLDER: Sure, there is a potential for challenging a law on its face and then challenging a law as it is applied. So there are two bases for challenging a particular statute. 
+
+POE: And when do you think you will have an opinion as to whether the law is constitutional? 
+
+<P>HOLDER: I've used this term a lot, but I think this is -- I think relatively soon. I think that we have to -- there has been much discussion about this. The review is underway. The Department of Justice along with the Department of Homeland Security is involved in this review. And I would expect it -- our view of the law will be expressed relatively soon. 
+
+<P>POE: You have some concerns about the statute. And it's -- it's hard for me to understand how you would have concerns about something being unconstitutional if you hadn't even read the law. 
+
+<P>It seems like you wouldn't make a judgment about whether it violates civil rights statutes, whether it violates federal preemption concepts if you haven't read the law. So can you help me out there a little bit, how you can make a judgment call on -- on that, but you haven't read the law and determined whether it's constitutional or not? 
+
+<P>HOLDER: Well, what I've said is that I've not made up my mind. I've only made -- made the comments that I've made on the basis of things that I've been able to glean by reading newspaper accounts, obviously, television, talking to people who are on the review panel, on the review team looking at the law. 
+
+<P>But I've not reached any conclusions as yet with regard to -- I've just expressed concerns on the basis of what I've heard about the law. But I'm not in a position to say at this point, not having read the law, not having had the chance to interact with the people who are doing the review, exactly what my position is."
+
+<HR width="50%">
+
+<P>What a <B>FOOL</B> Mr. Holder is! More over he is <B>NOT</B> doing his job, but we still pay his worthless tail. Unbelievable!
+
+<P> The Bible says we are not to call people fools. However, what if they are provable fools?? Like Mr. Holder above. I don't know. What do you think? Am I wrong??
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>May 31, 2010</H2></center><BR></center>
+
+<P>On this Veteran's Day it is nice to see so many people grateful to our Military Men and Women for their service and sacrifice to keep our country safe. When I got out of the 82nd Airborne back in 1974 everyone hated the military. It is so good to see that this attitude has changed.
+
+<P>I am an election Judge for Precinct 49 here in Idaho. We just had a primary election here. We have a total of 814 registered voters in this precinct. We had about 103 people vote in this primary. Not too good. I sure hope the November elections have a better turn out.
+
+<P>I get a free motorcycle industry type magazine. Apparently it was just bought out buy another Media organization. It would seem only two people from the old organization were kept. The editor was kept and had high praise for all the people who helped make the magazine so good that someone bought them out. The editor ended with the words "We couldn't have done it without you, and you will be missed!"
+
+<P>Wow, I'll bet that makes them feel better. You could even put that on your resume for the next job... if you can find one.
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>June 6, 2010</H2></center><BR></center>
+
+<P>White House Reporter Helen Thomas thinks that the Jews should go home. So like where does she think they are now? The Old Testament, which has been around a lot longer then the Palestinians, seems to mention the Jewish people quite a bit. Seems to me the Jews were there first. In fact, they have been there for something like 3000-3500 years. 
+
+<P>Here is a novel idea. Why don't the Palestinians accept Israel's right to exist and just live in peace with them. You know... Just give peace a chance?
+
+<BR><BR>
+<center>
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/nc4OeRu7cfs&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/nc4OeRu7cfs&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+</center>
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>June 20, 2010</H2></center><BR></center>
+
+<P>Well, the oil spill is still spilling. Our dear leader choose to turn away all the help (Oil Skimmers) that was offered by several European Nations. They did get a slush fund of 20 Billion from BP. I wonder how long it will take for the politicians to siphon all that money into other "Emergency Projects".
+
+<P>Consider this. They have a meteorite (Allan Hills 84001) that they say came from Mars. Depending on who you listen to, this rock was blown off of Mars 600,000 or 15 million or 4 billion years ago and floated around in space until about 13,000 years ago. They "Prove" this by saying this rock here on earth is the same type as a rock called <a href="http://www.astrobio.net/exclusive/924/matching-mars-to-meteorites" target="_blank">Bounce</a> that the Viking space craft hit when landing on Mars. This is considered "Science"
+
+<P>Sigh, if you believe that then you need to pull your head out of your fourth point of contact before lack of oxygen kills your brain completely. 
+
+<P>So what did I want you to consider? Simply this. That type of "Sience" is going to fix that BP oil leak! Depressing isn't it.
+
+
+<P>Here is an interesting  <a href="http://townhall.com/columnists/JillianBandes/2010/06/17/inside_the_deepwater_horizon_oil_spill?page=full" target="_blank">interview.</a>
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>August 19, 2010</H2></center><BR></center>
+
+<P>The opposition to the Mosque to be built at the 9/11 site in New York has nothing to do with limiting religious freedom and everything to do with gloating over Radical Islam's victory over the USA. Moslems have always built Trophy Mosques on the sites of their battle victories. They are simply using our freedoms against us and to mock us. I wonder where all the funds to build the Trophy Mosque are coming from. Saudi Arabia perhaps? Here is what one of the Saudi Clerics thinks:
+
+<P>Comments of Saudi cleric Muhammad Al-Arifi on Egypt's Al-Rahma TV, July 19, 2010:
+
+<P>"Devotion to Jihad for the sake of Allah, and the desire to shed blood, to smash skulls, and to sever limbs for the sake of Allah and in defense of His religion, is, undoubtedly, an honor for the believer. ... The Koranic verses that deal with fighting the infidels and conquering their countries say that they should convert to Islam, pay the jizya poll tax, or be killed. If the Muslims had implemented this, we would not have reached the humiliation in which we find ourselves today." 
+
+<P>I bet a nice big Trophy Mosque to celebrate 9/11 would go a long way to ease that humiliation. I notice a Greek Orthodox church that was destroyed by the collapsing Twin Towers has not been rebuilt and President Barack Hussein Obama does not seem too worried about their religious freedom. Maybe we should give him a pass on this. After all he is a busy guy, what with celebrating Ramadan and all. Way too busy to personally address the Boy Scout�s 100th anniversary celebration though he did send a nice tape! He is the honorary chairman of the Boy Scouts of America you know.
+
+<P>The good news is you don't have to worry about offending those pesky Christians or the Boy Scouts. I mean really. What are they going to do? Blow you up or something? I don't think so!
+
+<P>Sorry Tammy, I only speak the truth and remember, Nancy and Hilary said that was OK, patriotic even!
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>August 25, 2010</H2></center><BR></center>
+
+<P>This Trophy Mosque thing keeps getting bigger and bigger so I decided to do a bit more research. I ran across a W. Thomas Smith, Jr interviewing a Lt. Gen. William G. Boykin. Quite interesting what the general says.
+
+<P><B>"I am so disappointed. I�m also angry that there are those who are so uninformed and 
+ 
+intimidated by these people that they are willing to allow this. We need to remember that Islam is 
+ 
+not a religion, but a totalitarian way of life with a religious component. Yet we protect the entire 
+ 
+thing under the first amendment. Stop and think about it. Islam is a legal system, a political 
+ 
+system, a financial system, a dress code, a moral code, and a social structure, yet we protect it as 
+ 
+a first amendment issue. That�s our fundamental mistake. The second thing is, people have no 
+ 
+understanding of Islam�s history or its basic tenets.
+ 
+<P>Islam�s objective in America is to replace our Constitution with Sharia law.
+ 
+When they defeated the nomadic tribes in Mecca, they built a mosque at the most holy site. The 
+ 
+message was one of triumph, that Islam has now defeated you and Islam reigns supreme. They 
+ 
+did the same thing at C�rdoba [Spain]. They did it in Jerusalem. Same in Constantinople. The 
+ 
+message was always one of conquest and victory.
+ 
+<P>Now, �ground zero� is not holy, but it is sacred because of the lives lost. They want to build a 
+ 
+mosque there to proclaim that Islam reigns supreme. Do you know what that is going to mean to 
+ 
+Muslims all over the world?
+ 
+<P>The recruiting to the Jihadist cause will be exponentially increased as a result of the very symbol � 
+ 
+the very message � associated with that mosque there. It is incomprehensible to me. It was 
+ 
+supported by Christian pastors and Jewish rabbis in this thing they call an interfaith dialogue. It 
+ 
+shows such an extraordinary lack of understanding for what Islam is doing."</B>
+
+<P>This got me to thinking because there really are Muslims who are for peace and good will toward others. What is the real bottom line here? I think it is this. Near as I can learn about 20% of Muslims here in the states believe in the first parts of the Koran, written by Muhammad while he was in Mecca. These writings are mostly peaceful. Muhammad's later writings where in Medina and are more violent and intolerant. 
+
+<P>Now things get interesting. The Islamic doctrine of aborgation is the idea that Allah can change or cancel things he tells Muslims. In other words newer revelations override pervious ones. Very handy that. Lets you do all kinds of things. I am glad that the God of the Bible is not so sloppy in his words. Hebrews 13:8 states <B>"Jesus Christ the same yesterday, and to day, and forever."</B>
+
+<P>This abrogation idea lets you ignore all the peaceful words and substitute Jihad and Sharia law. Jihad and Sharia law is now the rule. That leaves about 80% of Muslims believing in some way, shape, or form that unbelievers have three choices.
+
+<OL>
+<LI>Accept Islam.
+<LI>Pay the jizya, the poll-tax on non-Muslims and accept a status that is little better then a slave.
+<LI>War with Muslims.
+</OL>
+<P>Those are your only choices. Living peaceably, with a first amendment freedom of religion does not seem to be among them. I don't think the American people are going to accept these choices, do you?
+
+<P>If I have any of this wrong perhaps one of my Muslim friends out there might point out, in detail if you don't mind, where I am in error.
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>September 6, 2010</H2></center><BR></center>
+
+<P>Thomas Sowell on the Trophy Mosque:
+ 
+<P><B>"That the President of the United States has joined the chorus of those calling the Ground Zero mosque a religious freedom issue tells us a lot about the moral dry rot that is undermining this country from within.
+ 
+<P>In this, as in other things, Barack Obama is not so much the cause of our decline but the culmination of it. He had many predecessors and many contemporaries who represent the same mindset and the same malaise.
+ 
+<P>There are people for whom moral preening has become a way of life. They are out in force denouncing critics of the Ground Zero mosque.
+ 
+<P>There are others for whom a citizen of the world affectation puts them one-up on those of us who are grateful to be Americans, and to enjoy a freedom that is all too rare in other countries around the world, even at this late date in human history."</B>
+
+<P>I like that term, Moral Dry Rot. Our leaders are rotting us out from within. For our government to issue a report to the UN that says the USA is in violation of Human Rights shows how much a rot problem we have in our government. I guess all those illegal aliens who are risking their lives trying to come here are masochistic and want to be discriminated against.
+
+<P>We need leaders who are proud of and committed to the United States of America, not to some hazy, shadowy, European, new world order. Are you listening Republicans? The Democrats sure are not. Maybe you need a cup or two of tea to help you clear your head!
+
+<BR><BR>
+<center><IMG SRC="Obama_Embarrassed.jpg" width=400 height=299></center>
+<BR><BR>
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>September 25, 2010</H2></center><BR></center>
+
+<P>I like to read. History books mostly. I'm just finishing a book on the Russian Autocrats, the Romanovs. A rather weighty tome of 852 pages by W. Bruce Lincoln. An excellent book, very well written and interesting. I highly recommend it. 
+
+<P>So what? You might ask. Well this. All the Tsars held absolute power. For some reason, which I really don't understand, people who support this type of government seem to think there are some people who are picked by God to rule. They call this ruling by Devine Right. Most of the European Kings and Queens believed this. The arrogance of these people is simply beyond belief. They feel so strongly about this Devine Right rule and that it only applies to Royalty. Because of this they could only marry among themselves. As you might think, there was a lot of inbreeding.
+
+<P>All through the 300 odd years of history of the Romanovs the kings and queens basically behaved like utter pigs. Oh, yeah. They had fancy names like The Great or Tsar but they all had one thing in common. They were all thieves, living off the hard work of the little people like you and me, better known as serfs. They were the elite of their day and for all their education and skill they spent most of their time partying on someone else's dime. It took the Russian people 300 years to get fed up with this. So they got rid of one Autocrat, the Tsar and replace him with another, Lenin. The people's revolution was sold out by power hungary thieves.
+
+<P>The book I read before the Romanovs was called "King, Kaiser, Tsar" by Catrine Clay. Another worthy read of 416 pages. This book was about the King of England, the Kaiser of Germany and the Tsar of Russia right before and then during World War One. These people were all related and because of their blood lines were thought to be "Royal" It is just amazing that these cousins were put in as rulers. 
+
+<P>The third book I just finished is "The Long March" by Sun Shuyun. Not so long at 270 pages but still well worth reading. This Chinese lady went around China finding and then interviewing survivors of the 1934 Long March. Soldiers of the Communist army were chased by the army of Chiang Kaishek. What these poor peasants went through. The soldiers of general Kaishek did not have it much better. They were all Chinese peasants and they all were treated like dirt by the elites. They too were sold out by their leaders who promised much more then they could give.
+
+<P>Why am I talking about all this? Well, you, me, we are all on the low side of the economic scale. I mean really, if you were extremely well off economically, would you be looking to repair your own motorcycle to save money? And me? Well, I like driving old cars. Yeah... sure that's it. We have a lot in common with these serfs and peasants. One, they and we are on the lower economic end of your respective economies. Two, we have leaders that think they are born to rule us and those same leaders feel we are too stupid to rule ourselves. The one big difference is that we far better educated and even though we may be poor in America, when compared to the rest of the world we are very rich indeed.
+
+<P>The Kings, Kaisers and Tsars of the world rely on the peasants and serfs to be powerless and uneducated so they can keep themselves in power. Fortunately, here in America we have the Internet and we also are just a bit smarter then our so called betters. The swamp that House Speaker Pelosi swore to drain is in full stink. November 2nd is almost here. I think it is time to give some of the ones who would be Kings the boot. 
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+
+<center><H2>October 30, 2010</H2></center><BR></center>
+
+<P>I talked to a friend in California yesterday. He had lots of political opinions. He then said he was NOT going to vote. He really stepped into it. I spend the next ten minutes giving him reasons to vote. He better not EVER give a political opinion around me again if he does not vote in this years elections. By not voting you make yourself a slave to the people who do vote.
+
+<P>We will soon find out if we are to survive as a nation. The vote this year is really that important. The present political leadership is simply not up to the job. When I work on a bike with a problem and things don't go right I stop and change my approach to the problem. To do otherwise is to act stupidly. The present economic theory that our government is using is called Keynesian and it does not work... but I guess you have already noticed that. If you are really interested as to why it does not work click <a href="http://www.heritage.org/Research/Reports/2010/01/Why-Government-Spending-Does-Not-Stimulate-Economic-Growth-Answering-the-Critics">Here.</A>
+
+<P>Now the real problem is not that it doesn't work. Whenever you to fix a problem you have to start off with "something". However, if that "something" does not work, you try "something" else. To keep doing the same thing over and over again and expecting a different result is the definition of insanity. So why are we still doing stimulus's that don't work? in a word, Pride. In two words, Pride and Arrogance. Our leaders, in both parties, don't want to admit that what they did, did not work and that we need to try "something" else. The cure... New Leaders. Tea Party Leaders. <BR><BR>
+
+<center><font size=8><b>Vote on November 2nd.</B></font></center>
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<a name="1"></a>
+<center><H2>December 31, 2010</H2></center><BR></center>
+
+<P>Well, the elections disappointed me. I am an election Judge and in my precinct we only had about 318 people vote. They issued 700 ballots. This was a pivotal election. Too bad more people don't see the need to vote. Interestingly enough, I am told the national elections in 1860 had an 80% turn out. I guess it must be harder to get to the polls these days.
+
+Moving on. I got a nice comment from GW about my little Blobs. I was actually happy to hear from him. He took the time to read what I had said on the opinion page and sent me this.
+
+<P>"Love your mc course, too bad your understanding of economics, American, European and world politics and history is patently 'wrong-headed' and shallow. Your understanding is a mile wide and an inch deep.
+I'd take the time to educate you but I can tell from what you've written and how it is presented that you're a dyed in the wool demagogue and possibly uneducable. While I suspect it could be done it would take months. 
+Take me word for it when I tell you that you aren't as smart or as prescient as you obviously believe yourself to be. 
+You pretty much seem to me to be the acme of the adage "a little knowledge is a dangerous thing". 
+Sorry, try turning your attention to other sources of 'information' than Fox news and the 'popular histories' you read and refer to.
+Believe me, there's a great deal of understanding and knowledge out there that you haven't been able to apprehend as yet.
+Best of luck with it."
+
+<P>My only complaint is that he gave me no details on why he felt this way. My Father always said if you claim you know something but can't explain it to others, maybe you don't know it as well as you think you do. It would have been nice if GW had presented some facts to back up his words. I am happy with his remarks though. About 90% of the comments I get on my Blobs are motorcycle questions, not comments on my opinions. Thank you GW! 
+
+<P>I'm really glad 2010 is finally over. 2011 looks to be a great year. 
+
+
+<BR><BR>
+<center><a href="why7.htm"><font size=6 color="red"><B>2011</B></font></a></center>
+
+
+<BR><BR>
+<P>If you would like to comment on my Blobs click <a href="blob.htm">HERE!</A>
+
+
+<BR><BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<BR><BR>
+<center><font size="6">The Next One Is Coming Soon!</font></center>
+
+<BR><center><img src="niceline1.jpg" width="580" height="15"></center>
+<BR><BR>
+
+
+
+<P>
+
+<BR>
+
+<BR><BR>
+</font>
+<center><a href="MC_repaircourse.htm"><font size=3>Back to M/C Repair Course</font></A>
+<BR><BR>
+<font size=3 color=black>Did this page help you ? Would you like to help us ? If so </font><a href="donation.htm"><font size=3 color=black>Click HERE</A></font></a></center><BR>
+
+<div align="center">
+<a href="indexindex.htm"><h4>BACK TO INDEX</h4></a>
+<a href="index.htm"><H4>MOTORCYCLE HOME PAGE</h4></a></div>
+<center><font size=2>Copyright &copy; 1999-2010 dansmc.com. All rights reserved.</font></center>
+
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5855320; 
+var sc_invisible=1; 
+var sc_security="ba229677"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="visit tracker on tumblr"
+href="http://www.statcounter.com/tumblr/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5855320/0/ba229677/1/"
+alt="visit tracker on tumblr" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+</div>
+
+</BODY>
+</HTML>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
